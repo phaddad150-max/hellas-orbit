@@ -31,9 +31,24 @@ export default function MissionPage() {
   ];
 
   const stillOpen = [
-    lang === "el" ? "Έγκριση MCOP" : "MCOP approval",
-    lang === "el" ? "Τέταρτο μέλος πληρώματος" : "Fourth crewmember",
-    lang === "el" ? "Ακριβής ημερομηνία εκτόξευσης" : "Exact launch date",
+    {
+      id: "mcop",
+      label: lang === "el" ? "Έγκριση MCOP" : "MCOP approval",
+      badge: lang === "el" ? "MCOP" : "MCOP",
+    },
+    {
+      id: "crew4",
+      label: lang === "el" ? "Τέταρτο μέλος πληρώματος" : "Fourth crewmember",
+      badge: lang === "el" ? "Πλήρωμα" : "Crew",
+    },
+    {
+      id: "launch",
+      label:
+        lang === "el"
+          ? "Ακριβής ημερομηνία εκτόξευσης"
+          : "Exact launch date",
+      badge: lang === "el" ? "Ημερομηνία" : "Date",
+    },
   ];
 
   return (
@@ -132,16 +147,26 @@ export default function MissionPage() {
             {lang === "el" ? "Ops desk · Ζωντανά →" : "Ops desk · Live →"}
           </Link>
         </div>
-        <ul className="mt-4 flex flex-wrap gap-2">
+        <div className="mt-5 grid gap-3 sm:grid-cols-3">
           {stillOpen.map((item) => (
-            <li
-              key={item}
-              className="rounded-full border border-[#7dd3fc]/30 bg-[#04070f]/40 px-3 py-1.5 text-xs text-[#d5dceb]"
+            <div
+              key={item.id}
+              className="rounded-2xl border border-[#7dd3fc]/30 bg-[#04070f]/45 p-4"
             >
-              ○ {item}
-            </li>
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="rounded-full border border-[#7dd3fc]/45 px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.14em] text-[#7dd3fc]">
+                  {item.badge}
+                </span>
+                <span className="rounded-full border border-[#f0d78c]/35 px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.14em] text-[#f0d78c]">
+                  {ui.pending[lang]}
+                </span>
+              </div>
+              <p className="mt-3 text-sm font-medium leading-snug text-[#d5dceb]">
+                {item.label}
+              </p>
+            </div>
           ))}
-        </ul>
+        </div>
       </section>
 
       <section>

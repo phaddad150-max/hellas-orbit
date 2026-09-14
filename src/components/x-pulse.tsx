@@ -23,8 +23,8 @@ const SEED: Pulse = {
     { el: "Πότε πετάει;", en: "When does he fly?" },
   ],
   summary: {
-    el: "Ο δημόσιος παλμός θα γεμίσει όταν συνδεθεί το X API. Μέχρι τότε ακολουθήστε NASA, SpaceX και τον Γολέμη από τον πίνακα επιχειρήσεων παραπάνω.",
-    en: "The public pulse fills when the X API is connected. Until then follow NASA, SpaceX and Golemis from the Ops board above.",
+    el: "Ο δημόσιος παλμός X είναι σε αναμονή (κλειδί API ή καθυστέρηση ροής). Μέχρι να γεμίσει, οι επίσημες ενημερώσεις είναι στον πίνακα επιχειρήσεων (Ops) παραπάνω.",
+    en: "The public X pulse is on hold (API key or feed lag). Until it fills, official updates live on the Ops board above.",
   },
 };
 
@@ -55,7 +55,7 @@ export function XPulse() {
         </p>
         {isSeed ? (
           <span className="rounded-full border border-[var(--line)] px-2 py-0.5 font-mono text-[10px] uppercase tracking-wide text-[#8b95ab]">
-            {lang === "el" ? "offline / αναμονή κλειδιού" : "offline / awaiting key"}
+            {lang === "el" ? "offline / καθυστέρηση" : "offline / lag"}
           </span>
         ) : (
           <span className="font-mono text-[10px] text-[#8b95ab]">X API</span>
@@ -65,10 +65,11 @@ export function XPulse() {
         {pulse.summary[lang]}
       </p>
       {isSeed ? (
-        <p className="mt-2 text-[11px] text-[#8b95ab]">
+        <p className="mt-2 rounded-xl border border-dashed border-[var(--line)] bg-black/20 px-3 py-2 text-[11px] leading-relaxed text-[#8b95ab]">
           {lang === "el"
-            ? "Κύρια πηγή σημάτων: ο πίνακας επιχειρήσεων (Ops) παραπάνω."
-            : "Primary signal source: the Ops board above."}
+            ? "Κενό ή καθυστέρηση ροής — όχι σφάλμα σελίδας. Κύρια πηγή σημάτων: ο πίνακας επιχειρήσεων (Ops) παραπάνω. "
+            : "Empty or delayed feed — not a page error. Primary signal source: the Ops board above. "}
+          {ui.pulseEmpty[lang]}
         </p>
       ) : null}
       <div className={`mt-3 flex flex-wrap gap-2 ${isSeed ? "opacity-70" : ""}`}>
@@ -85,9 +86,6 @@ export function XPulse() {
           </span>
         ))}
       </div>
-      {isSeed ? (
-        <p className="mt-3 text-[11px] text-[#8b95ab]">{ui.pulseEmpty[lang]}</p>
-      ) : null}
     </div>
   );
 }

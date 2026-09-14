@@ -146,8 +146,25 @@ export function OpsBoard() {
       ) : (
         <ul className="mt-4 space-y-2">
           {filtered.length === 0 ? (
-            <li className="text-sm text-[#8b95ab]">
-              {lang === "el" ? "Φόρτωση ενημερώσεων…" : "Loading updates…"}
+            <li className="rounded-xl border border-dashed border-[var(--line)] bg-black/20 p-4">
+              {loading ? (
+                <p className="text-sm text-[#8b95ab]">
+                  {lang === "el" ? "Φόρτωση ενημερώσεων…" : "Loading updates…"}
+                </p>
+              ) : (
+                <>
+                  <p className="text-sm font-medium text-[#d5dceb]">
+                    {lang === "el"
+                      ? "Καμία ενημέρωση αυτή τη στιγμή"
+                      : "No updates right now"}
+                  </p>
+                  <p className="mt-1 text-xs leading-relaxed text-[#8b95ab]">
+                    {lang === "el"
+                      ? "Οι ροές καθυστερούν ή είναι προσωρινά κενές. Δοκιμάστε Ανανέωση — τα σχετικά με την αποστολή εμφανίζονται πρώτα όταν φτάσουν."
+                      : "Feeds are delayed or temporarily empty. Try Refresh — mission-related items sort first when they arrive."}
+                  </p>
+                </>
+              )}
             </li>
           ) : (
             filtered.map((item) => (

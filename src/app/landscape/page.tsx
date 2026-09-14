@@ -82,13 +82,28 @@ export default function LandscapePage() {
           <p className="mt-3 text-[#d5dceb]">{ui.namesLead[lang]}</p>
         </header>
         <NameSky />
-        <div className="grid gap-3 md:grid-cols-2">
+        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {featured.map((n) => (
-            <article key={n.name} className="panel rounded-2xl p-4">
-              <p className="font-mono text-xs text-[#7dd3fc]">{n.usedBy}</p>
-              <h3 className="display text-2xl text-[#f0d78c]">{n.greek}</h3>
-              <p className="text-sm">{n.name}</p>
-              <p className="mt-2 text-sm text-[#d5dceb]">{n.what[lang]}</p>
+            <article
+              key={n.name}
+              className="panel flex flex-col gap-3 rounded-3xl border border-[#d4af37]/20 p-5 md:p-6"
+            >
+              <div className="flex items-start justify-between gap-3">
+                <span className="rounded-full border border-[#7dd3fc]/35 bg-[#04070f]/50 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-[#7dd3fc]">
+                  {n.usedBy}
+                </span>
+              </div>
+              <div>
+                <h3 className="display text-3xl leading-tight text-[#f0d78c] md:text-4xl">
+                  {n.greek}
+                </h3>
+                <p className="mt-1 text-sm font-medium tracking-wide text-[#d5dceb]/90">
+                  {n.name}
+                </p>
+              </div>
+              <p className="mt-auto border-t border-[var(--line)] pt-3 text-sm leading-snug text-[#c5cee0]">
+                {n.what[lang]}
+              </p>
             </article>
           ))}
         </div>
