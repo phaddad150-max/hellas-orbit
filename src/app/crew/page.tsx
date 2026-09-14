@@ -23,7 +23,7 @@ export default function CrewPage() {
           {mission.officialNames.vast} · {mission.officialNames.nasaPam} · Dragon · 4
           seats
         </p>
-        <h1 className="display mt-2 text-5xl">{ui.crewTitle[lang]}</h1>
+        <h1 className="display mt-2 text-4xl sm:text-5xl">{ui.crewTitle[lang]}</h1>
         <p className="mt-3 text-sm leading-relaxed text-[#d5dceb]">
           {lang === "el"
             ? "Τρία ονόματα ανακοινωμένα · μία θέση ακόμα ανοιχτή. Ο Γολέμης είναι ο ελληνικός ειδικός αποστολής — άνοιξε το πλήρες προφίλ για εμπειρία και διαδρομή."
@@ -51,7 +51,7 @@ export default function CrewPage() {
         </div>
       </header>
 
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="grid grid-cols-1 gap-4 min-[480px]:grid-cols-2 xl:grid-cols-4">
         {ordered.map((c) => {
           const isGolemis = c.id === "golemis";
           const isPending = c.id === "tba";
@@ -60,7 +60,7 @@ export default function CrewPage() {
             <>
               <div className="flex items-start justify-between gap-2">
                 <p className="text-3xl leading-none">{c.flag}</p>
-                <div className="text-right">
+                <div className="min-w-0 text-right">
                   <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#7dd3fc]">
                     {c.role[lang]}
                   </p>
@@ -77,7 +77,7 @@ export default function CrewPage() {
                 </div>
               </div>
               <h2
-                className={`display mt-4 text-2xl md:text-3xl ${
+                className={`display mt-4 text-2xl break-words md:text-3xl ${
                   isPending ? "text-[#8b95ab]" : "text-white"
                 }`}
               >
@@ -105,7 +105,7 @@ export default function CrewPage() {
               <Link
                 key={c.id}
                 href="/first-greek"
-                className="panel block rounded-3xl p-5 ring-1 ring-[#d4af37] transition hover:-translate-y-0.5 hover:bg-white/[0.03]"
+                className="panel block h-full rounded-3xl p-4 sm:p-5 ring-1 ring-[#d4af37] transition hover:-translate-y-0.5 hover:bg-white/[0.03]"
               >
                 {body}
               </Link>
@@ -115,7 +115,7 @@ export default function CrewPage() {
           return (
             <article
               key={c.id}
-              className={`panel rounded-3xl p-5 ${
+              className={`panel h-full rounded-3xl p-4 sm:p-5 ${
                 isPending
                   ? "border border-dashed border-[#7dd3fc]/35 bg-black/20"
                   : ""

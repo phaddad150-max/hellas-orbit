@@ -21,40 +21,40 @@ export default function FirstGreekPage() {
             width={800}
             height={1000}
             priority
-            className="h-full min-h-[420px] w-full object-cover object-top md:min-h-[520px]"
+            className="h-full min-h-[360px] w-full object-cover object-top sm:min-h-[420px] md:min-h-[520px]"
           />
           {/* Dark scrim for readable overlay text */}
           <div
             className="portrait-scrim pointer-events-none absolute inset-0"
             aria-hidden
           />
-          <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col gap-3 p-5 md:p-7">
+          <div className="absolute inset-x-0 bottom-0 z-10 flex max-h-[78%] flex-col gap-2 overflow-y-auto overscroll-contain p-4 sm:gap-3 sm:p-5 md:max-h-none md:p-7">
             <p className="portrait-overlay-copy text-[10px] font-medium uppercase tracking-[0.28em] text-[#7dd3fc]">
               🇬🇷 ESA Project Astronaut
             </p>
-            <h1 className="display portrait-overlay-copy text-3xl leading-tight text-white md:text-4xl lg:text-5xl">
+            <h1 className="display portrait-overlay-copy text-[1.65rem] leading-tight text-white sm:text-3xl md:text-4xl lg:text-5xl">
               {golemis.name[lang]}
             </h1>
-            <p className="portrait-overlay-copy text-sm font-medium text-[#f0d78c] md:text-base">
+            <p className="portrait-overlay-copy text-xs font-medium text-[#f0d78c] sm:text-sm md:text-base">
               {golemis.role[lang]}
             </p>
-            <p className="portrait-overlay-copy line-clamp-4 max-w-xl text-sm leading-relaxed text-[#d5dceb] md:line-clamp-none md:text-[15px]">
+            <p className="portrait-overlay-copy line-clamp-3 max-w-xl text-[13px] leading-relaxed text-[#e8edf7] sm:line-clamp-4 sm:text-sm md:line-clamp-none md:text-[15px]">
               {golemis.story[lang]}
             </p>
-            <blockquote className="display portrait-overlay-copy border-l-2 border-[#d4af37] pl-3 text-lg leading-snug text-[#f0d78c] md:text-xl">
+            <blockquote className="display portrait-overlay-copy border-l-2 border-[#d4af37] pl-3 text-base leading-snug text-[#f0d78c] sm:text-lg md:text-xl">
               “{golemis.quote[lang]}”
             </blockquote>
-            <div className="mt-1 flex flex-wrap gap-2">
+            <div className="mt-1 flex flex-wrap gap-1.5 sm:gap-2">
               {golemis.facts.map((f) => (
                 <span
                   key={f.en}
-                  className="rounded-full border border-[#d4af37]/35 bg-[#04070f]/55 px-2.5 py-1 text-[11px] text-[#d5dceb] backdrop-blur-sm"
+                  className="rounded-full border border-[#d4af37]/35 bg-[#04070f]/70 px-2 py-1 text-[10px] leading-snug text-[#e8edf7] backdrop-blur-sm sm:px-2.5 sm:text-[11px]"
                 >
                   ★ {f[lang]}
                 </span>
               ))}
             </div>
-            <p className="text-[10px] text-[#8b95ab]">{ui.illustration[lang]}</p>
+            <p className="text-[10px] text-[#a8b0c2]">{ui.illustration[lang]}</p>
           </div>
         </div>
 
