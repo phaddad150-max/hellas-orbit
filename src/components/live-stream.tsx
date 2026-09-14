@@ -17,6 +17,11 @@ export function LiveStream() {
 
   return (
     <div id="live" className="overflow-hidden rounded-2xl border border-[var(--line)]">
+      <div className="flex items-center justify-between gap-2 border-b border-[var(--line)] px-3 py-2">
+        <p className="text-[10px] uppercase tracking-[0.28em] text-[#7dd3fc]">
+          {lang === "el" ? "LIVE streams" : "LIVE streams"}
+        </p>
+      </div>
       <div className="flex flex-wrap gap-1 border-b border-[var(--line)] p-2">
         {streams.map((s) => (
           <button
@@ -33,12 +38,20 @@ export function LiveStream() {
           </button>
         ))}
       </div>
-      <div className="aspect-video bg-black">
+      <div className="relative aspect-video min-h-[200px] bg-black">
+        <div
+          className="pointer-events-none absolute inset-0 flex items-center justify-center"
+          aria-hidden
+        >
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#8b95ab]">
+            {lang === "el" ? "Φόρτωση stream…" : "Loading stream…"}
+          </p>
+        </div>
         <iframe
           key={current.id}
           title={current[lang]}
           src={embedSrc(current.src)}
-          className="h-full w-full"
+          className="relative z-[1] h-full w-full"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
         />

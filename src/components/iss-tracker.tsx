@@ -15,6 +15,7 @@ export function IssTracker() {
   const { lang } = useI18n();
   const [iss, setIss] = useState<Iss | null>(null);
   const [error, setError] = useState(false);
+  const [updatedAt, setUpdatedAt] = useState<number | null>(null);
 
   useEffect(() => {
     let alive = true;
@@ -28,6 +29,7 @@ export function IssTracker() {
         if (alive) {
           setIss(data);
           setError(false);
+          setUpdatedAt(Date.now());
         }
       } catch {
         if (alive) setError(true);
@@ -44,13 +46,35 @@ export function IssTracker() {
   const x = iss ? (iss.longitude + 180) / 360 : 0.5;
   const y = iss ? (90 - iss.latitude) / 180 : 0.45;
 
+  const pulseClass = error
+    ? "h-2 w-2 rounded-full bg-amber-400/80"
+    : iss
+      ? "h-2 w-2 animate-pulse rounded-full bg-emerald-400"
+      : "h-2 w-2 rounded-full bg-[#8b95ab]/60";
+
+  const caption =
+    lang === "el"
+      ? "Ζωντανή θέση ISS (NORAD 25544) · ανανέωση ~8 δευτ. · lat/lon σε γεωγραφικούς βαθμούς"
+      : "Live ISS position (NORAD 25544) · refreshes ~8s · lat/lon are geographic degrees";
+
   return (
     <div className="panel overflow-hidden rounded-2xl">
       <div className="flex items-center justify-between px-4 py-3">
         <p className="text-xs uppercase tracking-[0.22em] text-[#7dd3fc]">
           {ui.live[lang]} · {ui.issNow[lang]}
         </p>
-        <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
+        <div className="flex items-center gap-2">
+          {updatedAt ? (
+            <span className="font-mono text-[10px] text-[#8b95ab]">
+              {lang === "el" ? "ενημ." : "upd."}{" "}
+              {new Date(updatedAt).toLocaleTimeString(
+                lang === "el" ? "el-GR" : "en-GB",
+                { hour: "2-digit", minute: "2-digit", second: "2-digit" },
+              )}
+            </span>
+          ) : null}
+          <span className={pulseClass} aria-hidden />
+        </div>
       </div>
       <div className="relative mx-4 mb-4 aspect-[2/1] overflow-hidden rounded-xl bg-[#071018]">
         <div
@@ -76,11 +100,13 @@ export function IssTracker() {
               : "ISS signal unavailable"
             : iss
               ? `${iss.latitude.toFixed(1)}°, ${iss.longitude.toFixed(1)}°`
-              : "…"}
+              : lang === "el"
+                ? "Φόρτωση…"
+                : "Loading…"}
         </p>
       </div>
       {iss && (
-        <div className="grid grid-cols-2 gap-2 px-4 pb-4 text-xs md:grid-cols-4">
+        <div className="grid grid-cols-2 gap-2 px-4 pb-2 text-xs md:grid-cols-4">
           <Metric label={ui.lat[lang]} value={`${iss.latitude.toFixed(2)}°`} />
           <Metric label={ui.lon[lang]} value={`${iss.longitude.toFixed(2)}°`} />
           <Metric
@@ -93,6 +119,9 @@ export function IssTracker() {
           />
         </div>
       )}
+      <p className="px-4 pb-4 text-[11px] leading-relaxed text-[#8b95ab]">
+        {caption}
+      </p>
     </div>
   );
 }

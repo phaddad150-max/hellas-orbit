@@ -66,6 +66,9 @@ export function OpsBoard() {
         <div>
           <p className="text-xs uppercase tracking-[0.2em] text-[#7dd3fc]">
             {ui.opsTitle[lang]}
+            <span className="ml-2 font-mono text-[9px] tracking-normal text-[#f0d78c]/80">
+              · {lang === "el" ? "κύρια πηγή" : "primary"}
+            </span>
           </p>
           <p className="mt-1 text-sm text-[#d5dceb]">{ui.opsLead[lang]}</p>
           {updatedAt ? (
