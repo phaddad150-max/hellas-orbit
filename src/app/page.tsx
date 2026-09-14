@@ -12,8 +12,9 @@ import { useI18n } from "@/lib/i18n";
 const cards = [
   { href: "/first-greek", kicker: "01", titleEl: "Ο πρώτος Έλληνας", titleEn: "The first Greek" },
   { href: "/mission", kicker: "02", titleEl: "Αποστολή", titleEn: "Mission" },
-  { href: "/crew", kicker: "03", titleEl: "Πλήρωμα", titleEn: "Crew" },
-  { href: "/landscape", kicker: "04", titleEl: "Η Ελλάδα στο Διάστημα", titleEn: "Greece in Space" },
+  { href: "/live", kicker: "03", titleEl: "Ζωντανά", titleEn: "Live" },
+  { href: "/crew", kicker: "04", titleEl: "Πλήρωμα", titleEn: "Crew" },
+  { href: "/landscape", kicker: "05", titleEl: "Η Ελλάδα στο Διάστημα", titleEn: "Greece in Space" },
 ] as const;
 
 export default function HomePage() {
@@ -81,7 +82,7 @@ export default function HomePage() {
         </div>
       </div>
 
-      <section className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
         {cards.map((c) => (
           <Link
             key={c.href}

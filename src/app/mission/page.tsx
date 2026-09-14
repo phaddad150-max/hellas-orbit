@@ -30,6 +30,12 @@ export default function MissionPage() {
     ],
   ];
 
+  const stillOpen = [
+    lang === "el" ? "Έγκριση MCOP" : "MCOP approval",
+    lang === "el" ? "Τέταρτο μέλος πληρώματος" : "Fourth crewmember",
+    lang === "el" ? "Ακριβής ημερομηνία εκτόξευσης" : "Exact launch date",
+  ];
+
   return (
     <div className="space-y-10">
       <header className="max-w-3xl">
@@ -102,6 +108,40 @@ export default function MissionPage() {
           ))}
         </div>
         <p className="mt-3 text-xs text-[#8b95ab]">{ui.netNote[lang]}</p>
+      </section>
+
+      <section className="panel rounded-3xl border border-[#7dd3fc]/25 p-5 md:p-6">
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <p className="text-xs uppercase tracking-[0.22em] text-[#7dd3fc]">
+              {lang === "el" ? "Εκκρεμή" : "Still open"}
+            </p>
+            <h2 className="display mt-2 text-2xl md:text-3xl">
+              {lang === "el" ? "Τι μένει ανοιχτό" : "What remains open"}
+            </h2>
+            <p className="mt-2 max-w-2xl text-sm text-[#8b95ab]">
+              {lang === "el"
+                ? "Εκκρεμεί: έγκριση MCOP, τέταρτο μέλος πληρώματος, ακριβής ημερομηνία εκτόξευσης."
+                : "Pending: MCOP approval, fourth crewmember, exact launch date."}
+            </p>
+          </div>
+          <Link
+            href="/live"
+            className="shrink-0 rounded-full border border-[#7dd3fc]/40 px-3 py-1.5 text-xs text-[#7dd3fc] hover:border-[#7dd3fc]/70"
+          >
+            {lang === "el" ? "Ops desk · Ζωντανά →" : "Ops desk · Live →"}
+          </Link>
+        </div>
+        <ul className="mt-4 flex flex-wrap gap-2">
+          {stillOpen.map((item) => (
+            <li
+              key={item}
+              className="rounded-full border border-[#7dd3fc]/30 bg-[#04070f]/40 px-3 py-1.5 text-xs text-[#d5dceb]"
+            >
+              ○ {item}
+            </li>
+          ))}
+        </ul>
       </section>
 
       <section>

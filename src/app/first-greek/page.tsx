@@ -1,12 +1,14 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { golemis } from "@/lib/data";
 import { ui } from "@/lib/copy";
 import { useI18n } from "@/lib/i18n";
 
 export default function FirstGreekPage() {
   const { lang } = useI18n();
+  const imageAlt = `${golemis.name[lang]} — ${ui.illustration[lang]}`;
 
   return (
     <div className="space-y-8">
@@ -15,7 +17,7 @@ export default function FirstGreekPage() {
         <div className="portrait-stage panel relative overflow-hidden rounded-3xl">
           <Image
             src="/brand/astronaut.png"
-            alt=""
+            alt={imageAlt}
             width={800}
             height={1000}
             priority
@@ -27,19 +29,19 @@ export default function FirstGreekPage() {
             aria-hidden
           />
           <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col gap-3 p-5 md:p-7">
-            <p className="text-[10px] font-medium uppercase tracking-[0.28em] text-[#7dd3fc]">
+            <p className="portrait-overlay-copy text-[10px] font-medium uppercase tracking-[0.28em] text-[#7dd3fc]">
               🇬🇷 ESA Project Astronaut
             </p>
-            <h1 className="display text-3xl leading-tight text-white drop-shadow md:text-4xl lg:text-5xl">
+            <h1 className="display portrait-overlay-copy text-3xl leading-tight text-white md:text-4xl lg:text-5xl">
               {golemis.name[lang]}
             </h1>
-            <p className="text-sm font-medium text-[#f0d78c] md:text-base">
+            <p className="portrait-overlay-copy text-sm font-medium text-[#f0d78c] md:text-base">
               {golemis.role[lang]}
             </p>
-            <p className="max-w-xl text-sm leading-relaxed text-[#d5dceb] md:text-[15px]">
+            <p className="portrait-overlay-copy line-clamp-4 max-w-xl text-sm leading-relaxed text-[#d5dceb] md:line-clamp-none md:text-[15px]">
               {golemis.story[lang]}
             </p>
-            <blockquote className="display border-l-2 border-[#d4af37] pl-3 text-lg leading-snug text-[#f0d78c] md:text-xl">
+            <blockquote className="display portrait-overlay-copy border-l-2 border-[#d4af37] pl-3 text-lg leading-snug text-[#f0d78c] md:text-xl">
               “{golemis.quote[lang]}”
             </blockquote>
             <div className="mt-1 flex flex-wrap gap-2">
@@ -105,6 +107,20 @@ export default function FirstGreekPage() {
               );
             })}
           </ol>
+          <div className="mt-6 flex flex-wrap gap-2 border-t border-[var(--line)] pt-4">
+            <Link
+              href="/mission"
+              className="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs text-[#f0d78c] hover:border-[#d4af37]/50"
+            >
+              {lang === "el" ? "Αποστολή →" : "Mission →"}
+            </Link>
+            <Link
+              href="/live"
+              className="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs text-[#7dd3fc] hover:border-[#7dd3fc]/50"
+            >
+              {lang === "el" ? "Ζωντανά →" : "Live →"}
+            </Link>
+          </div>
         </aside>
       </header>
     </div>

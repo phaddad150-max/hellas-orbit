@@ -229,21 +229,27 @@ a {
   isolation: isolate;
 }
 
-/* Portrait overlay: dark scrim + readable high-contrast text */
+/* Portrait overlay: darker mid-tone scrim + readable high-contrast text */
 .portrait-scrim {
   background:
     linear-gradient(
       to top,
-      rgba(4, 7, 15, 0.96) 0%,
-      rgba(4, 7, 15, 0.88) 28%,
-      rgba(4, 7, 15, 0.55) 52%,
-      rgba(4, 7, 15, 0.15) 72%,
+      rgba(4, 7, 15, 0.97) 0%,
+      rgba(4, 7, 15, 0.92) 26%,
+      rgba(4, 7, 15, 0.68) 48%,
+      rgba(4, 7, 15, 0.28) 70%,
       transparent 100%
     ),
     linear-gradient(
       to right,
-      rgba(4, 7, 15, 0.35) 0%,
-      transparent 45%
+      rgba(4, 7, 15, 0.45) 0%,
+      transparent 48%
     );
 }
 
+.portrait-overlay-copy {
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.95),
+    0 2px 14px rgba(0, 0, 0, 0.7),
+    0 0 1px rgba(0, 0, 0, 0.8);
+}
