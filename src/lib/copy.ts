@@ -1,12 +1,14 @@
 import type { Lang } from "./types";
 
-/** Primary nav — Live & Future demoted (Live empty/dead-end; Future linked from Landscape). */
+/** Primary nav — full adult IA. */
 export const nav = [
-  { href: "/", el: "Αρχική", en: "Home" },
+  { href: "/", el: "Κέντρο αποστολής", en: "Mission control" },
   { href: "/first-greek", el: "Ο πρώτος Έλληνας", en: "The first Greek" },
   { href: "/mission", el: "Αποστολή", en: "Mission" },
   { href: "/crew", el: "Πλήρωμα", en: "Crew" },
+  { href: "/live", el: "Ζωντανά", en: "Live" },
   { href: "/landscape", el: "Η Ελλάδα στο Διάστημα", en: "Greece in Space" },
+  { href: "/future", el: "Επόμενη γενιά", en: "Next generation" },
 ] as const;
 
 export const ui = {
