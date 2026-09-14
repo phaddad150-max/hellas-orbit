@@ -12,7 +12,7 @@ export default function FuturePage() {
   const potentials = ui.potential[lang];
 
   return (
-    <div className="space-y-12">
+    <div className="space-y-12 md:space-y-14">
       <header className="grid gap-8 lg:grid-cols-2">
         <div>
           <div className="flex flex-wrap items-center gap-3">
@@ -29,10 +29,16 @@ export default function FuturePage() {
           </p>
           <p className="mt-3 text-sm text-[#8b95ab]">
             {lang === "el"
-              ? "Ένας χώρος για μαθητές, φοιτητές και νέους επιστήμονες — χωρίς ξεχωριστή «παιδική» ενότητα στο μενού."
-              : "One place for pupils, students and young scientists — no separate kids item in the main menu."}
+              ? "Πρόγραμμα για μαθητές, φοιτητές και νέους επιστήμονες — καθημερινό κουίζ και οδικός χάρτης, χωρίς ξεχωριστή παιδική φωνή στο μενού."
+              : "A programme for pupils, students and young scientists — daily quiz and roadmap, no separate kids item in the main menu."}
           </p>
           <div className="mt-6 flex flex-wrap gap-2">
+            <a
+              href="#daily-quiz"
+              className="inline-flex rounded-full bg-[#d4af37] px-4 py-2 text-sm text-[#1a1404]"
+            >
+              {ui.quizTitle[lang]} →
+            </a>
             <Link
               href="/landscape#space-speaks-greek"
               className="inline-flex rounded-full border border-[#d4af37]/50 bg-[#d4af37]/10 px-4 py-2 text-sm text-[#f0d78c] hover:border-[#d4af37]"
