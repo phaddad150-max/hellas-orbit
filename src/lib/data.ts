@@ -580,8 +580,17 @@ export const greekNames = [
   },
 ];
 
-export const kidsQuiz = [
+export type KidsQuizItem = {
+  id: string;
+  q: { el: string; en: string };
+  options: { el: string[]; en: string[] };
+  answer: number;
+};
+
+/** Verified bilingual bank for the young-astronaut daily quiz. No invented facts. */
+export const kidsQuiz: KidsQuizItem[] = [
   {
+    id: "golemis-larissa",
     q: {
       el: "Πού μεγάλωσε ο Αδριανός Γολέμης;",
       en: "Where did Adrianos Golemis grow up?",
@@ -593,6 +602,7 @@ export const kidsQuiz = [
     answer: 0,
   },
   {
+    id: "crew-dragon",
     q: {
       el: "Πώς λέγεται το διαστημόπλοιο του πληρώματος;",
       en: "What is the crew spacecraft called?",
@@ -604,6 +614,7 @@ export const kidsQuiz = [
     answer: 0,
   },
   {
+    id: "iss-altitude",
     q: {
       el: "Πόσο ψηλά πετά περίπου ο ISS;",
       en: "About how high does the ISS fly?",
@@ -615,6 +626,7 @@ export const kidsQuiz = [
     answer: 0,
   },
   {
+    id: "artemis-name",
     q: {
       el: "Ποια θεά έδωσε το όνομά της στο νέο σεληνιακό πρόγραμμα της NASA;",
       en: "Which goddess named NASA’s new Moon programme?",
@@ -626,6 +638,7 @@ export const kidsQuiz = [
     answer: 0,
   },
   {
+    id: "helps-greece",
     q: {
       el: "Γιατί η αποστολή ωφελεί την Ελλάδα;",
       en: "Why does the mission help Greece?",
@@ -646,7 +659,373 @@ export const kidsQuiz = [
     },
     answer: 0,
   },
+  {
+    id: "golemis-role",
+    q: {
+      el: "Ποιος είναι ο ρόλος του Γολέμη στην πτήση;",
+      en: "What is Golemis’s role on the flight?",
+    },
+    options: {
+      el: ["Ειδικός αποστολής", "Διοικητής", "Πιλότος Dragon", "Επίγειος ελεγκτής"],
+      en: ["Mission specialist", "Commander", "Dragon pilot", "Ground controller"],
+    },
+    answer: 0,
+  },
+  {
+    id: "pesquet-role",
+    q: {
+      el: "Ποιος είναι ο διοικητής του πληρώματος;",
+      en: "Who is the crew commander?",
+    },
+    options: {
+      el: ["Τόμας Πέσκε", "Άλες Σβόμποντα", "Αδριανός Γολέμης", "Μαξ Χαότ"],
+      en: ["Thomas Pesquet", "Aleš Svoboda", "Adrianos Golemis", "Max Haot"],
+    },
+    answer: 0,
+  },
+  {
+    id: "svoboda-role",
+    q: {
+      el: "Ποιος θα πιλοτάρει το Dragon;",
+      en: "Who will pilot the Dragon?",
+    },
+    options: {
+      el: ["Άλες Σβόμποντα", "Τόμας Πέσκε", "Αδριανός Γολέμης", "Τζόζεφ Άσμπαχερ"],
+      en: ["Aleš Svoboda", "Thomas Pesquet", "Adrianos Golemis", "Josef Aschbacher"],
+    },
+    answer: 0,
+  },
+  {
+    id: "rocket",
+    q: {
+      el: "Με ποιον πύραυλο εκτοξεύεται το πλήρωμα;",
+      en: "Which rocket launches the crew?",
+    },
+    options: {
+      el: ["Falcon 9", "Ariane 6", "Soyuz", "SLS"],
+      en: ["Falcon 9", "Ariane 6", "Soyuz", "SLS"],
+    },
+    answer: 0,
+  },
+  {
+    id: "destination-iss",
+    q: {
+      el: "Πού πηγαίνει η αποστολή;",
+      en: "Where is the mission going?",
+    },
+    options: {
+      el: ["Διεθνής Διαστημικός Σταθμός (ISS)", "Άρης", "Σελήνη", "Γεωστατική τροχιά"],
+      en: ["International Space Station (ISS)", "Mars", "the Moon", "Geostationary orbit"],
+    },
+    answer: 0,
+  },
+  {
+    id: "dual-names",
+    q: {
+      el: "Πώς ονομάζει η Vast την ίδια πτήση που στη NASA λέγεται PAM-6;",
+      en: "What does Vast call the same flight NASA labels PAM-6?",
+    },
+    options: {
+      el: ["Vast-PAM-1", "Artemis I", "HELLAS-2", "Alpha"],
+      en: ["Vast-PAM-1", "Artemis I", "HELLAS-2", "Alpha"],
+    },
+    answer: 0,
+  },
+  {
+    id: "hellas-pair",
+    q: {
+      el: "Το HELLAS-1 στο dashboard αντιστοιχεί σε ποια επίσημα ονόματα;",
+      en: "HELLAS-1 on this dashboard pairs with which official names?",
+    },
+    options: {
+      el: ["Vast-PAM-1 και PAM-6", "μόνο Soyuz", "μόνο Artemis", "Apollo 11"],
+      en: ["Vast-PAM-1 and PAM-6", "Soyuz only", "Artemis only", "Apollo 11"],
+    },
+    answer: 0,
+  },
+  {
+    id: "esa-greece",
+    q: {
+      el: "Ποιος υπέγραψε τη συμφωνία με τη Vast εκ μέρους της Ελλάδας;",
+      en: "Who signed the Vast agreement on behalf of Greece?",
+    },
+    options: {
+      el: ["ESA", "μόνο η NASA", "μόνο η SpaceX", "ΟΗΕ"],
+      en: ["ESA", "NASA alone", "SpaceX alone", "the UN"],
+    },
+    answer: 0,
+  },
+  {
+    id: "antarctica",
+    q: {
+      el: "Πού έζησε ο Γολέμης 14 μήνες σε έρευνα απομόνωσης;",
+      en: "Where did Golemis spend 14 months on isolation research?",
+    },
+    options: {
+      el: ["Ανταρκτική (Concordia)", "ISS", "Σελήνη", "Κρήτη"],
+      en: ["Antarctica (Concordia)", "the ISS", "the Moon", "Crete"],
+    },
+    answer: 0,
+  },
+  {
+    id: "esa-surgeon",
+    q: {
+      el: "Τι δουλειά έκανε ο Γολέμης στην ESA πριν πετάξει;",
+      en: "What job did Golemis do at ESA before flying?",
+    },
+    options: {
+      el: ["Γιατρός πτήσεων", "Πιλότος μαχητικών", "Αστρονόμος μόνο", "Δημοσιογράφος"],
+      en: ["Flight surgeon", "Fighter pilot", "Astronomer only", "Journalist"],
+    },
+    answer: 0,
+  },
+  {
+    id: "net-window",
+    q: {
+      el: "Τι σημαίνει το παράθυρο «καλοκαίρι 2027» στο dashboard;",
+      en: "What does the “summer 2027” window on the dashboard mean?",
+    },
+    options: {
+      el: ["Νωρίτερο παράθυρο (NET), όχι κλειστή ημερομηνία", "Επιβεβαιωμένη ημέρα εκτόξευσης", "Ημερομηνία επιστροφής στη Σελήνη", "Τέλος της αποστολής Artemis"],
+      en: ["Earliest window (NET), not a locked launch date", "A confirmed launch day", "Moon return date", "End of Artemis"],
+    },
+    answer: 0,
+  },
+  {
+    id: "mcop-open",
+    q: {
+      el: "Τι εκκρεμεί ακόμα για το πλήρωμα;",
+      en: "What is still open for the crew?",
+    },
+    options: {
+      el: ["Έγκριση MCOP και τέταρτο μέλος", "Τίποτα — όλα κλειστά", "Μόνο το όνομα του πυραύλου", "Η σημαία της Ελλάδας"],
+      en: ["MCOP approval and a fourth crewmember", "Nothing — everything is locked", "Only the rocket’s name", "Greece’s flag"],
+    },
+    answer: 0,
+  },
+  {
+    id: "apollo-name",
+    q: {
+      el: "Ποιο ελληνικό όνομα ταξίδεψε στη Σελήνη με τις αποστολές της NASA;",
+      en: "Which Greek name travelled to the Moon with NASA’s missions?",
+    },
+    options: {
+      el: ["Απόλλων", "Ζευς", "Ποσειδώνας", "Άρης"],
+      en: ["Apollo", "Zeus", "Poseidon", "Ares"],
+    },
+    answer: 0,
+  },
+  {
+    id: "orion-name",
+    q: {
+      el: "Πώς λέγεται το διαστημόπλοιο βαθιάς εξερεύνησης της NASA με ελληνικό όνομα;",
+      en: "What is NASA’s deep-space crew vehicle with a Greek name?",
+    },
+    options: {
+      el: ["Ωρίων", "Ερμής", "Δίας", "Κρόνος"],
+      en: ["Orion", "Hermes", "Zeus", "Cronus"],
+    },
+    answer: 0,
+  },
+  {
+    id: "orbit-time",
+    q: {
+      el: "Πόσο διαρκεί περίπου μία περιφορά του ISS γύρω από τη Γη;",
+      en: "About how long is one ISS orbit around Earth?",
+    },
+    options: {
+      el: ["~90 λεπτά", "~24 ώρες", "~7 ημέρες", "~1 λεπτό"],
+      en: ["~90 minutes", "~24 hours", "~7 days", "~1 minute"],
+    },
+    answer: 0,
+  },
+  {
+    id: "launch-site",
+    q: {
+      el: "Από πού εκτοξεύεται συνήθως το Crew Dragon;",
+      en: "Where does Crew Dragon usually launch from?",
+    },
+    options: {
+      el: ["Φλόριντα, ΗΠΑ", "Μπαϊκονούρ", "Κουρού", "Τόκιο"],
+      en: ["Florida, USA", "Baikonur", "Kourou", "Tokyo"],
+    },
+    answer: 0,
+  },
+  {
+    id: "why-esa",
+    q: {
+      el: "Γιατί μετράει η ESA σε αυτή την ιστορία;",
+      en: "Why does ESA matter in this story?",
+    },
+    options: {
+      el: [
+        "Εκπαίδευση πληρώματος και συμφωνία εκ μέρους της Ελλάδας",
+        "Φτιάχνει μόνη της τον Falcon 9",
+        "Διαχειρίζεται το X API",
+        "Δεν συμμετέχει",
+      ],
+      en: [
+        "Crew training and the agreement on Greece’s behalf",
+        "It builds Falcon 9 alone",
+        "It runs the X API",
+        "It is not involved",
+      ],
+    },
+    answer: 0,
+  },
+  {
+    id: "spacex-provider",
+    q: {
+      el: "Ποιος παρέχει τον Falcon 9 και το Crew Dragon;",
+      en: "Who provides Falcon 9 and Crew Dragon?",
+    },
+    options: {
+      el: ["SpaceX", "μόνο η ESA", "μόνο η Vast", "Roscosmos"],
+      en: ["SpaceX", "ESA alone", "Vast alone", "Roscosmos"],
+    },
+    answer: 0,
+  },
+  {
+    id: "splashdown",
+    q: {
+      el: "Πώς επιστρέφει συνήθως το πλήρωμα με Crew Dragon;",
+      en: "How does a Crew Dragon crew usually return?",
+    },
+    options: {
+      el: ["Προσθαλάσσωση στον ωκεανό με αλεξίπτωτα", "Προσγείωση στη Σελήνη", "Προσγείωση στο Μπαϊκονούρ", "Απευθείας στην Αθήνα"],
+      en: ["Ocean splashdown under parachutes", "Landing on the Moon", "Landing at Baikonur", "Straight to Athens"],
+    },
+    answer: 0,
+  },
+  {
+    id: "reusable-dragon",
+    q: {
+      el: "Τι είδος κάψουλας είναι το Crew Dragon;",
+      en: "What kind of capsule is Crew Dragon?",
+    },
+    options: {
+      el: ["Επαναχρησιμοποιούμενη κάψουλα πληρώματος", "Μόνο ρομποτικό φορτίο", "Σεληνιακό λεωφορείο", "Δορυφόρος επικοινωνιών"],
+      en: ["A reusable crew capsule", "Cargo-only robot", "A lunar shuttle", "A communications satellite"],
+    },
+    answer: 0,
+  },
+  {
+    id: "hope-mars",
+    q: {
+      el: "Σε ποιο πλανήτη βρίσκεται σε τροχιά το Hope Probe των ΗΑΕ;",
+      en: "Which planet does the UAE’s Hope Probe orbit?",
+    },
+    options: {
+      el: ["Άρης", "Αφροδίτη", "Δίας", "Ερμής"],
+      en: ["Mars", "Venus", "Jupiter", "Mercury"],
+    },
+    answer: 0,
+  },
+  {
+    id: "poland-ignis",
+    q: {
+      el: "Πώς λέγεται η πολωνική εθνική αποστολή ISS μέσω ESA;",
+      en: "What is Poland’s national ISS mission via ESA called?",
+    },
+    options: {
+      el: ["IGNIS", "HELLAS-1", "Artemis II", "Soyuz-21"],
+      en: ["IGNIS", "HELLAS-1", "Artemis II", "Soyuz-21"],
+    },
+    answer: 0,
+  },
+  {
+    id: "saudi-axiom",
+    q: {
+      el: "Με τι πέταξαν οι Σαουδάραβες αστροναύτες στην Axiom-2;",
+      en: "What did Saudi astronauts fly on for Axiom-2?",
+    },
+    options: {
+      el: ["Εμπορική πτήση Dragon", "Μόνο εθνικός πύραυλος", "Hope Probe", "Ariane 5"],
+      en: ["A commercial Dragon flight", "A national rocket only", "Hope Probe", "Ariane 5"],
+    },
+    answer: 0,
+  },
+  {
+    id: "three-esa-nations",
+    q: {
+      el: "Πόσες χώρες ESA μοιράζονται το ίδιο Dragon σε αυτή την πτήση Vast;",
+      en: "How many ESA nations share the same Dragon on this Vast flight?",
+    },
+    options: {
+      el: ["Τρεις (Ελλάδα, Τσεχία, Γαλλία)", "Μία", "Δέκα", "Καμία"],
+      en: ["Three (Greece, Czechia, France)", "One", "Ten", "None"],
+    },
+    answer: 0,
+  },
+  {
+    id: "commercial-path",
+    q: {
+      el: "Πώς μπαίνουν πολλές νέες χώρες στον ISS σήμερα;",
+      en: "How do many new countries reach the ISS today?",
+    },
+    options: {
+      el: ["Μέσω εμπορικών εταίρων, όχι μόνο κρατικών πυραύλων", "Μόνο με δικό τους πύραυλο", "Μόνο με Hope Probe", "Δεν μπορούν"],
+      en: ["Through commercial partners, not only national rockets", "Only with their own rocket", "Only via Hope Probe", "They cannot"],
+    },
+    answer: 0,
+  },
+  {
+    id: "dock-step",
+    q: {
+      el: "Μετά την εκτόξευση, τι κάνει το πλήρωμα στον ISS;",
+      en: "After launch, what does the crew do at the ISS?",
+    },
+    options: {
+      el: ["Συνάντηση και πρόσδεση (docking)", "Προσγείωση στον Άρη", "Εκτόξευση προς τη Σελήνη την ίδια μέρα", "Τίποτα — μένουν στη Φλόριντα"],
+      en: ["Rendezvous and docking", "Land on Mars", "Launch to the Moon the same day", "Nothing — they stay in Florida"],
+    },
+    answer: 0,
+  },
 ];
+
+/** Stable hash for Athens calendar days (YYYY-MM-DD). */
+function hashAthensDay(athensDate: string): number {
+  let h = 2166136261;
+  for (let i = 0; i < athensDate.length; i++) {
+    h ^= athensDate.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
+}
+
+/**
+ * Date-seeded daily quiz set for Athens calendar day (`YYYY-MM-DD`).
+ * Picks 3–5 questions from `kidsQuiz` (deterministic shuffle).
+ */
+export function dailyQuizFor(
+  athensDate: string,
+  count = 4,
+): KidsQuizItem[] {
+  const n = Math.min(5, Math.max(3, Math.floor(count)));
+  const size = Math.min(n, kidsQuiz.length);
+  const seed = hashAthensDay(athensDate.trim());
+  const idx = kidsQuiz.map((_, i) => i);
+  // Fisher–Yates with seeded LCG
+  let s = seed || 1;
+  for (let i = idx.length - 1; i > 0; i--) {
+    s = (Math.imul(s, 1664525) + 1013904223) >>> 0;
+    const j = s % (i + 1);
+    const tmp = idx[i]!;
+    idx[i] = idx[j]!;
+    idx[j] = tmp;
+  }
+  return idx.slice(0, size).map((i) => kidsQuiz[i]!);
+}
+
+/** Convenience: today's Athens calendar date as YYYY-MM-DD. */
+export function athensCalendarDate(now = new Date()): string {
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Europe/Athens",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(now);
+}
 
 export const sources = [
   { label: "ESA press release, 9 Sep 2026", href: "https://www.esa.int/Newsroom/Press_Releases/ESA_signs_an_Agreement_with_Vast_on_behalf_of_Greece" },

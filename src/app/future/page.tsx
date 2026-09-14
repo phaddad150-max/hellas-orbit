@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { DailyKidsQuiz } from "@/components/daily-kids-quiz";
 import { GreekFlag } from "@/components/greek-flag";
 import { ui } from "@/lib/copy";
 import { useI18n } from "@/lib/i18n";
@@ -57,6 +58,8 @@ export default function FuturePage() {
           />
         </div>
       </header>
+
+      <DailyKidsQuiz />
 
       <section>
         <h2 className="display text-3xl md:text-4xl">{ui.potentialTitle[lang]}</h2>
