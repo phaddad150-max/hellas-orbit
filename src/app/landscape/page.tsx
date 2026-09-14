@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import { GreekFlag } from "@/components/greek-flag";
 import { NameSky } from "@/components/name-sky";
 import { StoryChips } from "@/components/story-chips";
@@ -8,6 +9,7 @@ import { greekNames } from "@/lib/data";
 import { greecePath } from "@/lib/greece";
 import { ui } from "@/lib/copy";
 import { useI18n } from "@/lib/i18n";
+import { cn } from "@/lib/utils";
 
 /** Featured names for the Greece story — full list stays available but demoted. */
 const FEATURED = new Set([
@@ -24,6 +26,7 @@ export default function LandscapePage() {
   const { lang } = useI18n();
   const featured = greekNames.filter((n) => FEATURED.has(n.name));
   const rest = greekNames.filter((n) => !FEATURED.has(n.name));
+  const [highlight, setHighlight] = useState<string | null>(null);
 
   return (
     <div className="space-y-12">
@@ -89,12 +92,31 @@ export default function LandscapePage() {
           <h2 className="display mt-2 text-4xl md:text-5xl">{ui.namesTitle[lang]}</h2>
           <p className="mt-3 text-[#d5dceb]">{ui.namesLead[lang]}</p>
         </header>
-        <NameSky />
+
+        {/* Full-bleed constellation under shell max-width */}
+        <div className="relative left-1/2 w-screen max-w-[100vw] -translate-x-1/2">
+          <NameSky
+            names={featured}
+            variant="sky"
+            onSelect={(n) => {
+              setHighlight(n.name);
+              const el = document.getElementById(`name-${n.name}`);
+              el?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+            }}
+          />
+        </div>
+
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {featured.map((n) => (
             <article
               key={n.name}
-              className="panel flex flex-col gap-3 rounded-3xl border border-[#d4af37]/20 p-5 md:p-6"
+              id={`name-${n.name}`}
+              className={cn(
+                "panel flex scroll-mt-28 flex-col gap-3 rounded-3xl border p-5 md:p-6",
+                highlight === n.name
+                  ? "border-[#d4af37]/70 ring-1 ring-[#d4af37]/45"
+                  : "border-[#d4af37]/20",
+              )}
             >
               <div className="flex items-start justify-between gap-3">
                 <span className="rounded-full border border-[#7dd3fc]/35 bg-[#04070f]/50 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-[#7dd3fc]">

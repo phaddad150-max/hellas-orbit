@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { streams } from "@/lib/leaders";
 import { ui } from "@/lib/copy";
 import { useI18n } from "@/lib/i18n";
@@ -13,7 +13,12 @@ function embedSrc(base: string) {
 export function LiveStream() {
   const { lang } = useI18n();
   const [id, setId] = useState(streams[0].id);
+  const [ready, setReady] = useState(false);
   const current = streams.find((s) => s.id === id) ?? streams[0];
+
+  useEffect(() => {
+    setReady(false);
+  }, [current.id]);
 
   return (
     <div id="live" className="overflow-hidden rounded-2xl border border-[var(--line)]">
@@ -40,14 +45,18 @@ export function LiveStream() {
         ))}
       </div>
       <div className="relative aspect-video min-h-[200px] bg-black">
-        <div
-          className="pointer-events-none absolute inset-0 flex items-center justify-center"
-          aria-hidden
-        >
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#8b95ab]">
-            {lang === "el" ? "Φόρτωση stream…" : "Loading stream…"}
-          </p>
-        </div>
+        {!ready ? (
+          <div
+            className="pointer-events-none absolute inset-0 z-[2] flex flex-col items-center justify-center gap-2 bg-black/80"
+            role="status"
+            aria-live="polite"
+          >
+            <span className="live-dot" aria-hidden />
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#8b95ab]">
+              {lang === "el" ? "Φόρτωση stream…" : "Loading stream…"}
+            </p>
+          </div>
+        ) : null}
         <iframe
           key={current.id}
           title={current[lang]}
@@ -55,6 +64,7 @@ export function LiveStream() {
           className="relative z-[1] h-full w-full"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
+          onLoad={() => setReady(true)}
         />
       </div>
       <p className="px-3 py-2 font-mono text-[10px] text-[#8b95ab]">
