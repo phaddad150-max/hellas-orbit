@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { GreekFlag } from "@/components/greek-flag";
+import { StoryChips } from "@/components/story-chips";
 import { ui } from "@/lib/copy";
 import { useI18n } from "@/lib/i18n";
 
@@ -12,9 +14,12 @@ export default function FuturePage() {
     <div className="space-y-12">
       <header className="grid gap-8 lg:grid-cols-2">
         <div>
-          <p className="text-xs uppercase tracking-[0.28em] text-[#7dd3fc]">
-            {lang === "el" ? "Εκπαίδευση · έμπνευση · βιομηχανία" : "Education · inspiration · industry"}
-          </p>
+          <div className="flex flex-wrap items-center gap-3">
+            <GreekFlag className="h-7 w-10" />
+            <p className="text-xs uppercase tracking-[0.28em] text-[#7dd3fc]">
+              {lang === "el" ? "Εκπαίδευση · έμπνευση · βιομηχανία" : "Education · inspiration · industry"}
+            </p>
+          </div>
           <h1 className="display mt-2 text-5xl md:text-6xl">
             {lang === "el" ? "Επόμενη γενιά" : "Next generation"}
           </h1>
@@ -26,12 +31,23 @@ export default function FuturePage() {
               ? "Ένας χώρος για μαθητές, φοιτητές και νέους επιστήμονες — χωρίς ξεχωριστή «παιδική» ενότητα στο μενού."
               : "One place for pupils, students and young scientists — no separate kids item in the main menu."}
           </p>
-          <Link
-            href="/landscape#space-speaks-greek"
-            className="mt-6 inline-flex rounded-full border border-[var(--line)] px-4 py-2 text-sm text-[#f0d78c] hover:border-[#d4af37]/50"
-          >
-            {ui.namesTitle[lang]} →
-          </Link>
+          <div className="mt-6 space-y-3">
+            <StoryChips />
+            <div className="flex flex-wrap gap-2">
+              <Link
+                href="/landscape#space-speaks-greek"
+                className="inline-flex rounded-full border border-[var(--line)] px-4 py-2 text-sm text-[#f0d78c] hover:border-[#d4af37]/50"
+              >
+                {ui.namesTitle[lang]} →
+              </Link>
+              <Link
+                href="/"
+                className="inline-flex rounded-full border border-[var(--line)] px-4 py-2 text-sm text-[#d5dceb] hover:border-[#d4af37]/50"
+              >
+                {lang === "el" ? "Κέντρο αποστολής →" : "Mission control →"}
+              </Link>
+            </div>
+          </div>
         </div>
         <div className="panel overflow-hidden rounded-3xl">
           <Image

@@ -28,16 +28,22 @@ export function Countdown() {
     { n: t.days, l: ui.days[lang] },
     { n: t.hours, l: ui.hours[lang] },
     { n: t.minutes, l: ui.minutes[lang] },
-    { n: t.seconds, l: ui.seconds[lang] },
+    { n: t.seconds, l: ui.seconds[lang], pulse: true },
   ];
 
   return (
     <div>
+      <p className="mb-2 flex items-center gap-2 text-[10px] uppercase tracking-[0.22em] text-[#7dd3fc]">
+        <span className="live-dot" aria-hidden />
+        {lang === "el" ? "Αντίστροφη μέτρηση · NET" : "Countdown · NET"}
+      </p>
       <div className="grid grid-cols-4 gap-2">
         {cells.map((c) => (
           <div
             key={c.l}
-            className="panel rounded-xl px-2 py-3 text-center"
+            className={`panel countdown-cell rounded-xl px-2 py-3 text-center ${
+              c.pulse ? "pulse-gold" : ""
+            }`}
           >
             <div className="font-mono text-2xl text-[#f0d78c] md:text-3xl">
               {c.n > 99 ? c.n : pad(c.n)}

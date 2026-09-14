@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { GreekFlag } from "@/components/greek-flag";
+import { StoryChips } from "@/components/story-chips";
 import { golemis } from "@/lib/data";
 import { ui } from "@/lib/copy";
 import { useI18n } from "@/lib/i18n";
@@ -12,7 +14,21 @@ export default function FirstGreekPage() {
 
   return (
     <div className="space-y-8">
-      {/* Portrait + overlay | experience beside — large screens */}
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="flex flex-wrap items-center gap-3">
+          <GreekFlag className="h-8 w-12 sm:h-9 sm:w-14" />
+          <div>
+            <p className="text-xs uppercase tracking-[0.28em] text-[#7dd3fc]">
+              🇬🇷 {ui.firstGreek[lang]}
+            </p>
+            <p className="mt-0.5 text-sm text-[#f0d78c]">
+              {golemis.name[lang]} · Hellas
+            </p>
+          </div>
+        </div>
+        <StoryChips />
+      </div>
+
       <header className="grid gap-6 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-stretch">
         <div className="portrait-stage panel relative overflow-hidden rounded-3xl">
           <Image
@@ -23,15 +39,17 @@ export default function FirstGreekPage() {
             priority
             className="h-full min-h-[360px] w-full object-cover object-top sm:min-h-[420px] md:min-h-[520px]"
           />
-          {/* Dark scrim for readable overlay text */}
           <div
             className="portrait-scrim pointer-events-none absolute inset-0"
             aria-hidden
           />
           <div className="absolute inset-x-0 bottom-0 z-10 flex max-h-[78%] flex-col gap-2 overflow-y-auto overscroll-contain p-4 sm:gap-3 sm:p-5 md:max-h-none md:p-7">
-            <p className="portrait-overlay-copy text-[10px] font-medium uppercase tracking-[0.28em] text-[#7dd3fc]">
-              🇬🇷 ESA Project Astronaut
-            </p>
+            <div className="flex flex-wrap items-center gap-2">
+              <GreekFlag className="h-5 w-[1.875rem] sm:h-6 sm:w-9" />
+              <p className="portrait-overlay-copy text-[10px] font-medium uppercase tracking-[0.28em] text-[#7dd3fc]">
+                🇬🇷 ESA Project Astronaut · Hellas
+              </p>
+            </div>
             <h1 className="display portrait-overlay-copy text-[1.65rem] leading-tight text-white sm:text-3xl md:text-4xl lg:text-5xl">
               {golemis.name[lang]}
             </h1>
@@ -115,8 +133,14 @@ export default function FirstGreekPage() {
               {lang === "el" ? "Αποστολή →" : "Mission →"}
             </Link>
             <Link
+              href="/crew"
+              className="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs text-[#f0d78c] hover:border-[#d4af37]/50"
+            >
+              {lang === "el" ? "Πλήρωμα →" : "Crew →"}
+            </Link>
+            <Link
               href="/live"
-              className="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs text-[#7dd3fc] hover:border-[#7dd3fc]/50"
+              className="rounded-full border border-[#7dd3fc]/40 px-3 py-1.5 text-xs text-[#7dd3fc] hover:border-[#7dd3fc]/70"
             >
               {lang === "el" ? "Ζωντανά →" : "Live →"}
             </Link>

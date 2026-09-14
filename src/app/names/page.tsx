@@ -11,7 +11,7 @@ export default function NamesRedirectPage() {
   }, [router]);
   return (
     <p className="text-sm text-[#8b95ab]">
-      Redirecting…
+      Redirecting to Greece in Space…
     </p>
   );
 }

@@ -1,7 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import { GreekFlag } from "@/components/greek-flag";
 import { NameSky } from "@/components/name-sky";
+import { StoryChips } from "@/components/story-chips";
 import { greekNames } from "@/lib/data";
 import { greecePath } from "@/lib/greece";
 import { ui } from "@/lib/copy";
@@ -26,9 +28,12 @@ export default function LandscapePage() {
   return (
     <div className="space-y-12">
       <header className="max-w-3xl">
-        <p className="text-xs uppercase tracking-[0.28em] text-[#7dd3fc]">
-          ESA · HELLAS-SPACE
-        </p>
+        <div className="flex flex-wrap items-center gap-3">
+          <GreekFlag className="h-7 w-10" />
+          <p className="text-xs uppercase tracking-[0.28em] text-[#7dd3fc]">
+            🇬🇷 ESA · HELLAS-SPACE
+          </p>
+        </div>
         <h1 className="display mt-2 text-5xl md:text-6xl">
           {lang === "el" ? "Η Ελλάδα στο Διάστημα" : "Greece in Space"}
         </h1>
@@ -37,25 +42,28 @@ export default function LandscapePage() {
             ? "Μέλος ESA, δορυφόροι, εργοστάσιο, και ο πρώτος γιατρός-αστροναύτης — και τα ελληνικά ονόματα που ήδη ταξιδεύουν στον ουρανό."
             : "ESA member, satellites, a factory, and the first doctor-astronaut — plus the Greek names already travelling through the sky."}
         </p>
-        <div className="mt-5 flex flex-wrap gap-2 text-xs">
-          <a
-            href="#path"
-            className="rounded-full border border-[var(--line)] px-3 py-1.5 text-[#d5dceb] hover:border-[#d4af37]/50"
-          >
-            {lang === "el" ? "Η διαδρομή" : "The path"}
-          </a>
-          <a
-            href="#space-speaks-greek"
-            className="rounded-full border border-[var(--line)] px-3 py-1.5 text-[#f0d78c] hover:border-[#d4af37]/50"
-          >
-            {ui.namesTitle[lang]}
-          </a>
-          <Link
-            href="/future"
-            className="rounded-full border border-[var(--line)] px-3 py-1.5 text-[#d5dceb] hover:border-[#d4af37]/50"
-          >
-            {lang === "el" ? "Επόμενη γενιά" : "Next generation"}
-          </Link>
+        <div className="mt-5 space-y-3">
+          <div className="flex flex-wrap gap-2 text-xs">
+            <a
+              href="#path"
+              className="rounded-full border border-[var(--line)] px-3 py-1.5 text-[#d5dceb] hover:border-[#d4af37]/50"
+            >
+              {lang === "el" ? "Η διαδρομή" : "The path"}
+            </a>
+            <a
+              href="#space-speaks-greek"
+              className="rounded-full border border-[var(--line)] px-3 py-1.5 text-[#f0d78c] hover:border-[#d4af37]/50"
+            >
+              {ui.namesTitle[lang]}
+            </a>
+            <Link
+              href="/future"
+              className="rounded-full border border-[var(--line)] px-3 py-1.5 text-[#d5dceb] hover:border-[#d4af37]/50"
+            >
+              {lang === "el" ? "Επόμενη γενιά" : "Next generation"}
+            </Link>
+          </div>
+          <StoryChips />
         </div>
       </header>
 

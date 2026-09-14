@@ -18,7 +18,8 @@ export function LiveStream() {
   return (
     <div id="live" className="overflow-hidden rounded-2xl border border-[var(--line)]">
       <div className="flex items-center justify-between gap-2 border-b border-[var(--line)] px-3 py-2">
-        <p className="text-[10px] uppercase tracking-[0.28em] text-[#7dd3fc]">
+        <p className="flex items-center gap-2 text-[10px] uppercase tracking-[0.28em] text-[#7dd3fc]">
+          <span className="live-dot" aria-hidden />
           {lang === "el" ? "LIVE streams" : "LIVE streams"}
         </p>
       </div>

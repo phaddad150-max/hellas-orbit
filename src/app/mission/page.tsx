@@ -11,6 +11,7 @@ import {
   officialStatements,
   vehicle,
 } from "@/lib/data";
+import { StoryChips } from "@/components/story-chips";
 import { ui } from "@/lib/copy";
 import { useI18n } from "@/lib/i18n";
 
@@ -70,6 +71,9 @@ export default function MissionPage() {
         <p className="mt-3 text-sm leading-relaxed text-[#8b95ab]">
           {mission.note[lang]}
         </p>
+        <div className="mt-5">
+          <StoryChips />
+        </div>
       </header>
 
       <section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
@@ -140,12 +144,20 @@ export default function MissionPage() {
                 : "Pending: MCOP approval, fourth crewmember, exact launch date."}
             </p>
           </div>
-          <Link
-            href="/live"
-            className="shrink-0 rounded-full border border-[#7dd3fc]/40 px-3 py-1.5 text-xs text-[#7dd3fc] hover:border-[#7dd3fc]/70"
-          >
-            {lang === "el" ? "Ops desk · Ζωντανά →" : "Ops desk · Live →"}
-          </Link>
+          <div className="flex shrink-0 flex-wrap gap-2">
+            <Link
+              href="/crew"
+              className="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs text-[#f0d78c] hover:border-[#d4af37]/50"
+            >
+              {lang === "el" ? "Πλήρωμα →" : "Crew →"}
+            </Link>
+            <Link
+              href="/live"
+              className="rounded-full border border-[#7dd3fc]/40 px-3 py-1.5 text-xs text-[#7dd3fc] hover:border-[#7dd3fc]/70"
+            >
+              {lang === "el" ? "Ops desk · Ζωντανά →" : "Ops desk · Live →"}
+            </Link>
+          </div>
         </div>
         <div className="mt-5 grid gap-3 sm:grid-cols-3">
           {stillOpen.map((item) => (

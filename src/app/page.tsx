@@ -4,7 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Countdown } from "@/components/countdown";
+import { GreekFlag } from "@/components/greek-flag";
+import { LivePulse } from "@/components/live-pulse";
 import { OrbitGlobe } from "@/components/orbit-globe";
+import { StoryChips } from "@/components/story-chips";
 import { crew, golemis, mission, vehicle } from "@/lib/data";
 import { ui } from "@/lib/copy";
 import { useI18n } from "@/lib/i18n";
@@ -12,9 +15,10 @@ import { useI18n } from "@/lib/i18n";
 const cards = [
   { href: "/first-greek", kicker: "01", titleEl: "Ο πρώτος Έλληνας", titleEn: "The first Greek" },
   { href: "/mission", kicker: "02", titleEl: "Αποστολή", titleEn: "Mission" },
-  { href: "/live", kicker: "03", titleEl: "Ζωντανά", titleEn: "Live" },
-  { href: "/crew", kicker: "04", titleEl: "Πλήρωμα", titleEn: "Crew" },
+  { href: "/crew", kicker: "03", titleEl: "Πλήρωμα", titleEn: "Crew" },
+  { href: "/live", kicker: "04", titleEl: "Ζωντανά", titleEn: "Live" },
   { href: "/landscape", kicker: "05", titleEl: "Η Ελλάδα στο Διάστημα", titleEn: "Greece in Space" },
+  { href: "/future", kicker: "06", titleEl: "Επόμενη γενιά", titleEn: "Next generation" },
 ] as const;
 
 export default function HomePage() {
@@ -35,12 +39,19 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#04070f] via-[#04070f]/80 to-transparent" />
         <div className="relative grid items-center gap-8 p-6 md:p-10 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
-            <p className="text-xs uppercase tracking-[0.28em] text-[#7dd3fc]">
-              🇬🇷 {mission.code} · {mission.operator}
-            </p>
+            <div className="flex flex-wrap items-center gap-3">
+              <GreekFlag className="h-8 w-12 sm:h-9 sm:w-14" />
+              <p className="text-xs uppercase tracking-[0.28em] text-[#7dd3fc]">
+                🇬🇷 {mission.code} · {mission.operator}
+              </p>
+              <LivePulse compact />
+            </div>
             <h1 className="display glow mt-3 text-4xl leading-tight md:text-6xl">
               {ui.firstGreek[lang]}
             </h1>
+            <p className="mt-2 text-sm font-medium text-[#f0d78c]">
+              {golemis.name[lang]} · Hellas Orbit · Ελλάδα σε τροχιά
+            </p>
             <p className="mt-4 max-w-xl text-base leading-relaxed text-[#d5dceb] md:text-lg">
               {golemis.story[lang]}
             </p>
@@ -62,7 +73,9 @@ export default function HomePage() {
             <div className="mt-8 max-w-lg">
               <Countdown />
             </div>
-            <p className="mt-3 max-w-lg text-xs text-[#8b95ab]">{ui.netNote[lang]}</p>
+            <div className="mt-6">
+              <StoryChips />
+            </div>
           </div>
           <OrbitGlobe />
         </div>
@@ -72,22 +85,23 @@ export default function HomePage() {
         <div className="ticker flex w-max gap-10 whitespace-nowrap px-6 font-mono text-xs text-[#f0d78c]">
           {Array.from({ length: 2 }).map((_, i) => (
             <span key={i} className="flex gap-10">
-              <span>ΑΔΡΙΑΝΟΣ ΓΟΛΕΜΗΣ</span>
+              <span>🇬🇷 ΑΔΡΙΑΝΟΣ ΓΟΛΕΜΗΣ</span>
               <span>ESA · HELLAS-SPACE</span>
               <span>DRAGON · FALCON 9</span>
               <span>ISS · NET SUMMER 2027</span>
               <span>ΑΡΤΕΜΙΣ · ΑΠΟΛΛΩΝ · ΩΡΙΩΝ</span>
+              <span>ΕΛΛΑΔΑ ΣΕ ΤΡΟΧΙΑ</span>
             </span>
           ))}
         </div>
       </div>
 
-      <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+      <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {cards.map((c) => (
           <Link
             key={c.href}
             href={c.href}
-            className="panel rounded-2xl p-5 transition hover:-translate-y-1"
+            className="panel card-lift rounded-2xl p-5 focus-visible:ring-2 focus-visible:ring-[#d4af37]/60"
           >
             <p className="font-mono text-[10px] tracking-[0.2em] text-[#7dd3fc]">
               {c.kicker}
@@ -102,15 +116,17 @@ export default function HomePage() {
         ))}
       </section>
 
-      {/* Tease only — full crew lives on /crew */}
       <section className="panel rounded-3xl p-6 md:p-8">
         <div className="flex flex-wrap items-end justify-between gap-3">
           <div>
             <p className="text-xs uppercase tracking-[0.22em] text-[#7dd3fc]">
               {ui.crewTitle[lang]}
             </p>
-            <h2 className="display mt-2 text-3xl">
-              {golemisCrew?.flag} {golemis.name[lang]}
+            <h2 className="display mt-2 flex flex-wrap items-center gap-2 text-3xl">
+              <GreekFlag className="h-6 w-9" />
+              <span>
+                {golemisCrew?.flag} {golemis.name[lang]}
+              </span>
             </h2>
             <p className="mt-2 max-w-2xl text-sm text-[#d5dceb]">
               {golemisCrew?.role[lang]}
@@ -120,13 +136,15 @@ export default function HomePage() {
                 : "Alongside commander Pesquet and pilot Svoboda · 4th seat still pending."}
             </p>
           </div>
-          <Link href="/crew" className="text-xs text-[#f0d78c]">
+          <Link
+            href="/crew"
+            className="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs text-[#f0d78c] transition hover:border-[#d4af37]/50"
+          >
             {ui.explore[lang]} →
           </Link>
         </div>
       </section>
 
-      {/* Tease vehicle — full specs on /mission */}
       <section className="grid gap-4 md:grid-cols-[1.1fr_0.9fr]">
         <div className="panel overflow-hidden rounded-3xl">
           <Image
@@ -172,12 +190,20 @@ export default function HomePage() {
           </p>
           <h2 className="display mt-2 max-w-2xl text-4xl">{ui.namesTitle[lang]}</h2>
           <p className="mt-3 max-w-2xl text-sm text-[#d5dceb]">{ui.namesLead[lang]}</p>
-          <Link
-            href="/landscape#space-speaks-greek"
-            className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#d4af37] px-5 py-2 text-sm text-[#1a1404]"
-          >
-            {ui.explore[lang]} <ArrowRight className="h-4 w-4" />
-          </Link>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Link
+              href="/landscape#space-speaks-greek"
+              className="inline-flex items-center gap-2 rounded-full bg-[#d4af37] px-5 py-2 text-sm text-[#1a1404]"
+            >
+              {ui.explore[lang]} <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link
+              href="/future"
+              className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] px-5 py-2 text-sm text-[#f0d78c] hover:border-[#d4af37]/50"
+            >
+              {lang === "el" ? "Επόμενη γενιά" : "Next generation"} →
+            </Link>
+          </div>
         </div>
       </section>
     </div>

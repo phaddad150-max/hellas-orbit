@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { GreekFlag } from "@/components/greek-flag";
+import { StoryChips } from "@/components/story-chips";
 import { crew, mission } from "@/lib/data";
 import { ui } from "@/lib/copy";
 import { useI18n } from "@/lib/i18n";
@@ -29,25 +31,12 @@ export default function CrewPage() {
             ? "Τρία ονόματα ανακοινωμένα · μία θέση ακόμα ανοιχτή. Ο Γολέμης είναι ο ελληνικός ειδικός αποστολής — άνοιξε το πλήρες προφίλ για εμπειρία και διαδρομή."
             : "Three names announced · one seat still open. Golemis is Greece’s mission specialist — open the full profile for experience and path."}
         </p>
-        <div className="mt-4 flex flex-wrap gap-2 text-xs">
-          <Link
-            href="/mission"
-            className="rounded-full border border-[var(--line)] px-3 py-1.5 text-[#f0d78c] hover:border-[#d4af37]/50"
-          >
-            {lang === "el" ? "Αποστολή →" : "Mission →"}
-          </Link>
-          <Link
-            href="/first-greek"
-            className="rounded-full border border-[var(--line)] px-3 py-1.5 text-[#f0d78c] hover:border-[#d4af37]/50"
-          >
-            {lang === "el" ? "Ο πρώτος Έλληνας →" : "The first Greek →"}
-          </Link>
-          <Link
-            href="/live"
-            className="rounded-full border border-[var(--line)] px-3 py-1.5 text-[#f0d78c] hover:border-[#d4af37]/50"
-          >
-            {lang === "el" ? "Ζωντανά →" : "Live →"}
-          </Link>
+        <div className="mt-4 space-y-3">
+          <div className="flex flex-wrap items-center gap-2 text-xs">
+            <GreekFlag className="h-5 w-8" />
+            <span className="text-[#f0d78c]">🇬🇷 Hellas · Golemis</span>
+          </div>
+          <StoryChips />
         </div>
       </header>
 
