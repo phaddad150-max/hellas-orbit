@@ -3,8 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { GreekFlag } from "@/components/greek-flag";
-import { StoryChips } from "@/components/story-chips";
-import { golemis } from "@/lib/data";
+import { golemis, mission } from "@/lib/data";
 import { ui } from "@/lib/copy";
 import { useI18n } from "@/lib/i18n";
 
@@ -14,21 +13,6 @@ export default function FirstGreekPage() {
 
   return (
     <div className="space-y-8">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="flex flex-wrap items-center gap-3">
-          <GreekFlag className="h-8 w-12 sm:h-9 sm:w-14" />
-          <div>
-            <p className="text-xs uppercase tracking-[0.28em] text-[#7dd3fc]">
-              🇬🇷 {ui.firstGreek[lang]}
-            </p>
-            <p className="mt-0.5 text-sm text-[#f0d78c]">
-              {golemis.name[lang]} · Hellas
-            </p>
-          </div>
-        </div>
-        <StoryChips />
-      </div>
-
       <header className="grid gap-6 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-stretch">
         <div className="portrait-stage panel relative overflow-hidden rounded-3xl">
           <Image
@@ -47,21 +31,18 @@ export default function FirstGreekPage() {
             <div className="flex flex-wrap items-center gap-2">
               <GreekFlag className="h-5 w-[1.875rem] sm:h-6 sm:w-9" />
               <p className="portrait-overlay-copy text-[10px] font-medium uppercase tracking-[0.28em] text-[#7dd3fc]">
-                🇬🇷 ESA Project Astronaut · Hellas
+                🇬🇷 {ui.firstGreek[lang]}
               </p>
             </div>
             <h1 className="display portrait-overlay-copy text-[1.65rem] leading-tight text-white sm:text-3xl md:text-4xl lg:text-5xl">
               {golemis.name[lang]}
             </h1>
             <p className="portrait-overlay-copy text-xs font-medium text-[#f0d78c] sm:text-sm md:text-base">
-              {golemis.role[lang]}
+              {golemis.role[lang]} · {golemis.from[lang]}
             </p>
             <p className="portrait-overlay-copy line-clamp-3 max-w-xl text-[13px] leading-relaxed text-[#e8edf7] sm:line-clamp-4 sm:text-sm md:line-clamp-none md:text-[15px]">
               {golemis.story[lang]}
             </p>
-            <blockquote className="display portrait-overlay-copy border-l-2 border-[#d4af37] pl-3 text-base leading-snug text-[#f0d78c] sm:text-lg md:text-xl">
-              “{golemis.quote[lang]}”
-            </blockquote>
             <div className="mt-1 flex flex-wrap gap-1.5 sm:gap-2">
               {golemis.facts.map((f) => (
                 <span
@@ -77,11 +58,8 @@ export default function FirstGreekPage() {
         </div>
 
         <aside className="panel flex flex-col rounded-3xl p-5 md:p-7">
-          <p className="text-xs uppercase tracking-[0.28em] text-[#7dd3fc]">
+          <h2 className="text-xs uppercase tracking-[0.28em] text-[#7dd3fc]">
             {lang === "el" ? "Εμπειρία" : "Experience"}
-          </p>
-          <h2 className="display mt-2 text-3xl md:text-4xl">
-            {lang === "el" ? "Η διαδρομή" : "The path"}
           </h2>
           <p className="mt-2 text-sm text-[#8b95ab]">
             {lang === "el"
@@ -125,25 +103,29 @@ export default function FirstGreekPage() {
               );
             })}
           </ol>
-          <div className="mt-6 flex flex-wrap gap-2 border-t border-[var(--line)] pt-4">
-            <Link
-              href="/mission"
-              className="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs text-[#f0d78c] hover:border-[#d4af37]/50"
-            >
-              {lang === "el" ? "Αποστολή →" : "Mission →"}
-            </Link>
-            <Link
-              href="/crew"
-              className="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs text-[#f0d78c] hover:border-[#d4af37]/50"
-            >
-              {lang === "el" ? "Πλήρωμα →" : "Crew →"}
-            </Link>
-            <Link
-              href="/live"
-              className="rounded-full border border-[#7dd3fc]/40 px-3 py-1.5 text-xs text-[#7dd3fc] hover:border-[#7dd3fc]/70"
-            >
-              {lang === "el" ? "Ζωντανά →" : "Live →"}
-            </Link>
+          <div className="mt-6 space-y-3 border-t border-[var(--line)] pt-4">
+            <p className="text-sm leading-relaxed text-[#d5dceb]">
+              {mission.behind[lang]}
+            </p>
+            <p className="text-xs text-[#8b95ab]">
+              {lang === "el"
+                ? "Εκκρεμεί: έγκριση MCOP, τέταρτο μέλος πληρώματος, ακριβής ημερομηνία."
+                : "Still open: MCOP approval, fourth crewmember, exact launch date."}
+            </p>
+            <div className="flex flex-wrap gap-2">
+              <Link
+                href="/mission"
+                className="rounded-full border border-[#d4af37]/60 bg-[#d4af37]/15 px-4 py-2 text-xs font-medium text-[#f0d78c] hover:border-[#d4af37]"
+              >
+                {lang === "el" ? "Αποστολή →" : "Mission →"}
+              </Link>
+              <Link
+                href="/crew"
+                className="rounded-full border border-[var(--line)] px-4 py-2 text-xs text-[#d5dceb] hover:border-[#d4af37]/50 hover:text-[#f0d78c]"
+              >
+                {lang === "el" ? "Πλήρωμα →" : "Crew →"}
+              </Link>
+            </div>
           </div>
         </aside>
       </header>

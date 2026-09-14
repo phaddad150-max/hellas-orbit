@@ -11,7 +11,6 @@ import {
   officialStatements,
   vehicle,
 } from "@/lib/data";
-import { StoryChips } from "@/components/story-chips";
 import { ui } from "@/lib/copy";
 import { useI18n } from "@/lib/i18n";
 
@@ -35,7 +34,7 @@ export default function MissionPage() {
     {
       id: "mcop",
       label: lang === "el" ? "Έγκριση MCOP" : "MCOP approval",
-      badge: lang === "el" ? "MCOP" : "MCOP",
+      badge: "MCOP",
     },
     {
       id: "crew4",
@@ -54,6 +53,7 @@ export default function MissionPage() {
 
   return (
     <div className="space-y-10">
+      {/* 1) Dual names once */}
       <header className="max-w-3xl">
         <p className="text-xs uppercase tracking-[0.28em] text-[#7dd3fc]">
           {mission.officialNames.vast} · {mission.officialNames.nasaPam} ·{" "}
@@ -65,35 +65,13 @@ export default function MissionPage() {
         <p className="mt-3 text-sm text-[#8b95ab]">
           {mission.officialNames.note[lang]}
         </p>
-        <p className="mt-4 text-lg leading-relaxed text-[#d5dceb]">
-          {mission.goal[lang]}
-        </p>
-        <p className="mt-3 text-sm leading-relaxed text-[#8b95ab]">
-          {mission.note[lang]}
-        </p>
-        <div className="mt-5">
-          <StoryChips />
-        </div>
       </header>
 
-      <section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-        {mission.partners.map((p) => (
-          <div key={p.id} className="panel rounded-2xl p-4">
-            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#7dd3fc]">
-              {p.role[lang]}
-            </p>
-            <p className="display mt-2 text-xl text-[#f0d78c]">{p[lang]}</p>
-          </div>
-        ))}
-      </section>
-
+      {/* 2) Short Golemis role + link profile */}
       <section className="panel rounded-3xl p-5 md:p-6">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
-            <p className="text-xs uppercase tracking-[0.22em] text-[#7dd3fc]">
-              {lang === "el" ? "Ρόλος Γολέμη" : "Golemis’s role"}
-            </p>
-            <h2 className="display mt-2 text-2xl md:text-3xl">
+            <h2 className="display text-2xl md:text-3xl">
               {golemis.name[lang]} · {golemis.role[lang]}
             </h2>
             <p className="mt-3 max-w-3xl text-sm leading-relaxed text-[#d5dceb]">
@@ -111,53 +89,41 @@ export default function MissionPage() {
         </div>
       </section>
 
+      {/* 3) Partners (why it matters · ESA / Greece / Europe) */}
       <section>
         <h2 className="display text-3xl">
-          {lang === "el" ? "Βασικά στοιχεία" : "Decision facts"}
+          {lang === "el" ? "Συνεργάτες" : "Partners"}
         </h2>
-        <div className="mt-4 grid gap-2 sm:grid-cols-2">
-          {decisionFacts.map(([k, v]) => (
-            <div
-              key={k}
-              className="panel flex items-start justify-between gap-4 rounded-xl px-4 py-3 text-sm"
-            >
-              <span className="shrink-0 text-[#8b95ab]">{k}</span>
-              <span className="text-right text-[#f0d78c]">{v}</span>
+        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+          {mission.partners.map((p) => (
+            <div key={p.id} className="panel rounded-2xl p-4">
+              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#7dd3fc]">
+                {p.role[lang]}
+              </p>
+              <p className="display mt-2 text-xl text-[#f0d78c]">{p[lang]}</p>
             </div>
           ))}
         </div>
-        <p className="mt-3 text-xs text-[#8b95ab]">{ui.netNote[lang]}</p>
+        <p className="mt-3 text-sm text-[#8b95ab]">{mission.behind[lang]}</p>
       </section>
 
+      {/* 4) Still-open trio */}
       <section className="panel rounded-3xl border border-[#7dd3fc]/25 p-5 md:p-6">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
-            <p className="text-xs uppercase tracking-[0.22em] text-[#7dd3fc]">
-              {lang === "el" ? "Εκκρεμή" : "Still open"}
-            </p>
-            <h2 className="display mt-2 text-2xl md:text-3xl">
+            <h2 className="display text-2xl md:text-3xl">
               {lang === "el" ? "Τι μένει ανοιχτό" : "What remains open"}
             </h2>
             <p className="mt-2 max-w-2xl text-sm text-[#8b95ab]">
-              {lang === "el"
-                ? "Εκκρεμεί: έγκριση MCOP, τέταρτο μέλος πληρώματος, ακριβής ημερομηνία εκτόξευσης."
-                : "Pending: MCOP approval, fourth crewmember, exact launch date."}
+              {mission.note[lang]}
             </p>
           </div>
-          <div className="flex shrink-0 flex-wrap gap-2">
-            <Link
-              href="/crew"
-              className="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs text-[#f0d78c] hover:border-[#d4af37]/50"
-            >
-              {lang === "el" ? "Πλήρωμα →" : "Crew →"}
-            </Link>
-            <Link
-              href="/live"
-              className="rounded-full border border-[#7dd3fc]/40 px-3 py-1.5 text-xs text-[#7dd3fc] hover:border-[#7dd3fc]/70"
-            >
-              {lang === "el" ? "Ops desk · Ζωντανά →" : "Ops desk · Live →"}
-            </Link>
-          </div>
+          <Link
+            href="/crew"
+            className="shrink-0 rounded-full border border-[var(--line)] px-3 py-1.5 text-xs text-[#f0d78c] hover:border-[#d4af37]/50"
+          >
+            {lang === "el" ? "Πλήρωμα →" : "Crew →"}
+          </Link>
         </div>
         <div className="mt-5 grid gap-3 sm:grid-cols-3">
           {stillOpen.map((item) => (
@@ -181,6 +147,29 @@ export default function MissionPage() {
         </div>
       </section>
 
+      {/* 5) Decision facts + mission goal */}
+      <section>
+        <h2 className="display text-3xl">
+          {lang === "el" ? "Βασικά στοιχεία" : "Decision facts"}
+        </h2>
+        <p className="mt-3 max-w-3xl text-base leading-relaxed text-[#d5dceb]">
+          {mission.goal[lang]}
+        </p>
+        <div className="mt-4 grid gap-2 sm:grid-cols-2">
+          {decisionFacts.map(([k, v]) => (
+            <div
+              key={k}
+              className="panel flex items-start justify-between gap-4 rounded-xl px-4 py-3 text-sm"
+            >
+              <span className="shrink-0 text-[#8b95ab]">{k}</span>
+              <span className="text-right text-[#f0d78c]">{v}</span>
+            </div>
+          ))}
+        </div>
+        <p className="mt-3 text-xs text-[#8b95ab]">{ui.netNote[lang]}</p>
+      </section>
+
+      {/* 6) Sourced timeline */}
       <section>
         <h2 className="display text-3xl">
           {lang === "el" ? "Χρονολόγιο" : "Timeline"}
@@ -205,6 +194,7 @@ export default function MissionPage() {
         </ol>
       </section>
 
+      {/* 7) Vehicle */}
       <section className="grid gap-6 lg:grid-cols-2">
         <div className="panel overflow-hidden rounded-3xl">
           <Image
@@ -239,27 +229,22 @@ export default function MissionPage() {
               </div>
             ))}
           </div>
-          <p className="text-sm text-[#8b95ab]">
-            {mission.behind[lang]}
-          </p>
         </div>
       </section>
 
+      {/* 8) Statements collapsed */}
       <details className="panel group rounded-3xl p-5 md:p-6">
         <summary className="cursor-pointer list-none">
           <div className="flex flex-wrap items-end justify-between gap-3">
             <div>
-              <p className="text-xs uppercase tracking-[0.22em] text-[#7dd3fc]">
-                {lang === "el" ? "Επίσημες δηλώσεις" : "Official statements"}
-              </p>
-              <h2 className="display mt-2 text-2xl md:text-3xl">
+              <h2 className="display text-2xl md:text-3xl">
                 {lang === "el"
-                  ? "ESA · Vast · Ελλάδα · CNES"
-                  : "ESA · Vast · Greece · CNES"}
+                  ? "Επίσημες δηλώσεις"
+                  : "Official statements"}
               </h2>
               <p className="mt-2 max-w-2xl text-sm text-[#8b95ab]">
                 {lang === "el"
-                  ? "Δευτερεύον · πάτα για να ανοίξεις επαληθεύσιμες παραθέσεις με πηγές."
+                  ? "Δευτερεύον · πάτα για επαληθεύσιμες παραθέσεις με πηγές."
                   : "Secondary · expand for verifiable quotations with sources."}
               </p>
             </div>
