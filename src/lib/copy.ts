@@ -30,6 +30,7 @@ export const ui = {
   },
   live: { el: "ΖΩΝΤΑΝΑ", en: "LIVE" },
   pending: { el: "Σε εξέλιξη", en: "In progress" },
+  stillOpen: { el: "Τι μένει ανοιχτό", en: "Still open" },
   explore: { el: "Εξερεύνησε", en: "Explore" },
   learnMore: { el: "Μάθε περισσότερα", en: "Learn more" },
   sources: { el: "Πηγές", en: "Sources" },
@@ -83,6 +84,14 @@ export const ui = {
   futureLead: {
     el: "Η πρώτη πτήση δεν είναι το τέλος. Είναι η αρχή μιας γενιάς που θα χτίζει δορυφόρους, ιατρική και ιστορίες στα ελληνικά.",
     en: "The first flight is not the end. It is the start of a generation that will build satellites, medicine and stories in Greek.",
+  },
+  potentialTitle: {
+    el: "Πέντε δυνατότητες",
+    en: "Five potentials",
+  },
+  whyCare: {
+    el: "Γιατί αφορά Ελλάδα και Ευρώπη",
+    en: "Why Greece and Europe should care",
   },
   potential: {
     el: [

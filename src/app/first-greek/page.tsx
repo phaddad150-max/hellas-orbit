@@ -104,14 +104,23 @@ export default function FirstGreekPage() {
             })}
           </ol>
           <div className="mt-6 space-y-3 border-t border-[var(--line)] pt-4">
+            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#7dd3fc]">
+              {mission.code} · {mission.officialNames.vast} ·{" "}
+              {mission.officialNames.nasaPam}
+            </p>
             <p className="text-sm leading-relaxed text-[#d5dceb]">
               {mission.behind[lang]}
             </p>
-            <p className="text-xs text-[#8b95ab]">
-              {lang === "el"
-                ? "Εκκρεμεί: έγκριση MCOP, τέταρτο μέλος πληρώματος, ακριβής ημερομηνία."
-                : "Still open: MCOP approval, fourth crewmember, exact launch date."}
-            </p>
+            <div className="rounded-2xl border border-[#7dd3fc]/30 bg-[#04070f]/35 px-3 py-2.5">
+              <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#7dd3fc]">
+                {ui.stillOpen[lang]}
+              </p>
+              <p className="mt-1 text-xs leading-relaxed text-[#8b95ab]">
+                {lang === "el"
+                  ? "Έγκριση MCOP · τέταρτο μέλος πληρώματος · ακριβής ημερομηνία εκτόξευσης."
+                  : "MCOP approval · fourth crewmember · exact launch date."}
+              </p>
+            </div>
             <div className="flex flex-wrap gap-2">
               <Link
                 href="/mission"

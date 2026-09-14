@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ExternalLink } from "lucide-react";
-import { crew, mission } from "@/lib/data";
+import { crew, mission, officialChannels } from "@/lib/data";
 import { leaders } from "@/lib/leaders";
 import { ui } from "@/lib/copy";
 import { useI18n } from "@/lib/i18n";
@@ -12,6 +12,10 @@ const ESA_HOME = "https://www.esa.int/";
 
 function leaderById(id: string) {
   return leaders.find((l) => l.id === id);
+}
+
+function channelById(id: string) {
+  return officialChannels.find((c) => c.id === id);
 }
 
 function initials(name: string) {
@@ -25,8 +29,8 @@ function initials(name: string) {
 
 export default function CrewPage() {
   const { lang } = useI18n();
-  const pesquet = leaderById("pesquet");
-  const golemisLeader = leaderById("golemis");
+  const pesquet = leaderById("pesquet") ?? channelById("pesquet");
+  const golemisLeader = leaderById("golemis") ?? channelById("golemis");
 
   const ordered = [
     ...crew.filter((c) => c.id === "pesquet"),
@@ -39,7 +43,8 @@ export default function CrewPage() {
     <div className="space-y-8">
       <header className="max-w-3xl">
         <p className="text-xs uppercase tracking-[0.28em] text-[#7dd3fc]">
-          {mission.officialNames.vast} · {mission.officialNames.nasaPam}
+          {mission.code} · {mission.officialNames.vast} ·{" "}
+          {mission.officialNames.nasaPam}
         </p>
         <h1 className="display mt-2 text-4xl sm:text-5xl">{ui.crewTitle[lang]}</h1>
         <p className="mt-3 text-sm leading-relaxed text-[#d5dceb]">
@@ -83,8 +88,11 @@ export default function CrewPage() {
               </p>
             </div>
           ) : isPending ? (
-            <div className="mb-4 flex aspect-[4/5] items-center justify-center rounded-2xl border border-dashed border-[#7dd3fc]/35 bg-black/20">
+            <div className="mb-4 flex aspect-[4/5] flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-[#7dd3fc]/35 bg-black/20">
               <span className="font-mono text-3xl text-[#7dd3fc]/70">✦</span>
+              <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#7dd3fc]">
+                TBA
+              </span>
             </div>
           ) : (
             <div className="mb-4 flex aspect-[4/5] flex-col items-center justify-center gap-3 rounded-2xl border border-[var(--line)] bg-gradient-to-b from-[#0c1424] to-[#04070f]">
@@ -142,7 +150,7 @@ export default function CrewPage() {
                 </p>
                 {isPending ? (
                   <span className="rounded-full border border-[#7dd3fc]/40 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wide text-[#7dd3fc]">
-                    {lang === "el" ? "εκκρεμεί" : "pending"}
+                    {ui.stillOpen[lang]}
                   </span>
                 ) : null}
                 {isGolemis ? (
@@ -164,7 +172,7 @@ export default function CrewPage() {
                   isPending ? "text-[#8b95ab]" : "text-[#d5dceb]"
                 }`}
               >
-                {c.kids[lang]}
+                {c.bio[lang]}
               </p>
               {links}
             </>

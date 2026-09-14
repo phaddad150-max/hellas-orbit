@@ -1,15 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
 import { GreekFlag } from "@/components/greek-flag";
 import { NameSky } from "@/components/name-sky";
-import { StoryChips } from "@/components/story-chips";
 import { greekNames } from "@/lib/data";
 import { greecePath } from "@/lib/greece";
 import { ui } from "@/lib/copy";
 import { useI18n } from "@/lib/i18n";
-import { cn } from "@/lib/utils";
 
 /** Featured names for the Greece story — full list stays available but demoted. */
 const FEATURED = new Set([
@@ -26,7 +23,6 @@ export default function LandscapePage() {
   const { lang } = useI18n();
   const featured = greekNames.filter((n) => FEATURED.has(n.name));
   const rest = greekNames.filter((n) => !FEATURED.has(n.name));
-  const [highlight, setHighlight] = useState<string | null>(null);
 
   return (
     <div className="space-y-12">
@@ -45,28 +41,25 @@ export default function LandscapePage() {
             ? "Μέλος ESA, δορυφόροι, εργοστάσιο, και ο πρώτος γιατρός-αστροναύτης — και τα ελληνικά ονόματα που ήδη ταξιδεύουν στον ουρανό."
             : "ESA member, satellites, a factory, and the first doctor-astronaut — plus the Greek names already travelling through the sky."}
         </p>
-        <div className="mt-5 space-y-3">
-          <div className="flex flex-wrap gap-2 text-xs">
-            <a
-              href="#path"
-              className="rounded-full border border-[var(--line)] px-3 py-1.5 text-[#d5dceb] hover:border-[#d4af37]/50"
-            >
-              {lang === "el" ? "Η διαδρομή" : "The path"}
-            </a>
-            <a
-              href="#space-speaks-greek"
-              className="rounded-full border border-[var(--line)] px-3 py-1.5 text-[#f0d78c] hover:border-[#d4af37]/50"
-            >
-              {ui.namesTitle[lang]}
-            </a>
-            <Link
-              href="/future"
-              className="rounded-full border border-[var(--line)] px-3 py-1.5 text-[#d5dceb] hover:border-[#d4af37]/50"
-            >
-              {lang === "el" ? "Επόμενη γενιά" : "Next generation"}
-            </Link>
-          </div>
-          <StoryChips />
+        <div className="mt-5 flex flex-wrap gap-2 text-xs">
+          <a
+            href="#path"
+            className="rounded-full border border-[var(--line)] px-3 py-1.5 text-[#d5dceb] hover:border-[#d4af37]/50"
+          >
+            {lang === "el" ? "Η διαδρομή" : "The path"}
+          </a>
+          <a
+            href="#space-speaks-greek"
+            className="rounded-full border border-[var(--line)] px-3 py-1.5 text-[#f0d78c] hover:border-[#d4af37]/50"
+          >
+            {ui.namesTitle[lang]}
+          </a>
+          <Link
+            href="/future"
+            className="rounded-full border border-[#d4af37]/50 bg-[#d4af37]/10 px-3 py-1.5 text-[#f0d78c] hover:border-[#d4af37]"
+          >
+            {lang === "el" ? "Επόμενη γενιά →" : "Next generation →"}
+          </Link>
         </div>
       </header>
 
@@ -74,11 +67,23 @@ export default function LandscapePage() {
         <h2 className="display text-3xl">
           {lang === "el" ? "Η διαδρομή της Ελλάδας" : "Greece’s path"}
         </h2>
+        <p className="mt-2 max-w-2xl text-sm text-[#8b95ab]">
+          {lang === "el"
+            ? "Πώς η Ελλάδα ανήκει ήδη στο Διάστημα — πριν και δίπλα στην πρώτη ανθρώπινη πτήση."
+            : "How Greece already belongs in space — before and beside the first human flight."}
+        </p>
         <div className="mt-5 grid gap-5 md:grid-cols-2">
-          {greecePath.map((p) => (
+          {greecePath.map((p, i) => (
             <article key={p.id} className="panel rounded-3xl p-6">
-              <h3 className="display text-2xl text-[#f0d78c]">{p.title[lang]}</h3>
-              <p className="mt-3 leading-relaxed text-[#d5dceb]">{p.body[lang]}</p>
+              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#7dd3fc]">
+                {String(i + 1).padStart(2, "0")}
+              </p>
+              <h3 className="display mt-2 text-2xl text-[#f0d78c]">
+                {p.title[lang]}
+              </h3>
+              <p className="mt-3 leading-relaxed text-[#d5dceb]">
+                {p.body[lang]}
+              </p>
             </article>
           ))}
         </div>
@@ -89,34 +94,20 @@ export default function LandscapePage() {
           <p className="text-xs uppercase tracking-[0.22em] text-[#7dd3fc]">
             Artemis · Apollo · Orion
           </p>
-          <h2 className="display mt-2 text-4xl md:text-5xl">{ui.namesTitle[lang]}</h2>
+          <h2 className="display mt-2 text-4xl md:text-5xl">
+            {ui.namesTitle[lang]}
+          </h2>
           <p className="mt-3 text-[#d5dceb]">{ui.namesLead[lang]}</p>
         </header>
 
-        {/* Full-bleed constellation under shell max-width */}
-        <div className="relative left-1/2 w-screen max-w-[100vw] -translate-x-1/2">
-          <NameSky
-            names={featured}
-            variant="sky"
-            onSelect={(n) => {
-              setHighlight(n.name);
-              const el = document.getElementById(`name-${n.name}`);
-              el?.scrollIntoView({ behavior: "smooth", block: "nearest" });
-            }}
-          />
-        </div>
+        <NameSky />
 
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {featured.map((n) => (
             <article
               key={n.name}
               id={`name-${n.name}`}
-              className={cn(
-                "panel flex scroll-mt-28 flex-col gap-3 rounded-3xl border p-5 md:p-6",
-                highlight === n.name
-                  ? "border-[#d4af37]/70 ring-1 ring-[#d4af37]/45"
-                  : "border-[#d4af37]/20",
-              )}
+              className="panel flex scroll-mt-28 flex-col gap-3 rounded-3xl border border-[#d4af37]/20 p-5 md:p-6"
             >
               <div className="flex items-start justify-between gap-3">
                 <span className="rounded-full border border-[#7dd3fc]/35 bg-[#04070f]/50 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-[#7dd3fc]">
@@ -150,7 +141,9 @@ export default function LandscapePage() {
                   key={n.name}
                   className="rounded-xl border border-[var(--line)] p-3"
                 >
-                  <p className="font-mono text-[10px] text-[#7dd3fc]">{n.usedBy}</p>
+                  <p className="font-mono text-[10px] text-[#7dd3fc]">
+                    {n.usedBy}
+                  </p>
                   <h3 className="display text-lg text-[#f0d78c]">{n.greek}</h3>
                   <p className="text-xs">{n.name}</p>
                   <p className="mt-1 text-xs text-[#d5dceb]">{n.what[lang]}</p>
@@ -159,6 +152,21 @@ export default function LandscapePage() {
             </div>
           </details>
         ) : null}
+      </section>
+
+      <section className="panel rounded-3xl p-6 md:p-8">
+        <h2 className="display text-2xl md:text-3xl">
+          {lang === "el" ? "Επόμενο βήμα" : "Next step"}
+        </h2>
+        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#d5dceb]">
+          {ui.futureLead[lang]}
+        </p>
+        <Link
+          href="/future"
+          className="mt-5 inline-flex rounded-full border border-[#d4af37]/60 bg-[#d4af37]/15 px-5 py-2.5 text-sm font-medium text-[#f0d78c] hover:border-[#d4af37]"
+        >
+          {lang === "el" ? "Επόμενη γενιά →" : "Next generation →"}
+        </Link>
       </section>
     </div>
   );

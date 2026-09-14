@@ -51,13 +51,18 @@ export default function MissionPage() {
     },
   ];
 
+  const esaWhy = officialStatements.find((s) => s.id === "aschbacher-esa");
+  const greeceWhy = officialStatements.find((s) => s.id === "papastergiou");
+  const esaChannel = officialChannels.find((c) => c.id === "esa");
+  const vastChannel = officialChannels.find((c) => c.id === "vast");
+
   return (
     <div className="space-y-10">
       {/* 1) Dual names once */}
       <header className="max-w-3xl">
         <p className="text-xs uppercase tracking-[0.28em] text-[#7dd3fc]">
-          {mission.officialNames.vast} · {mission.officialNames.nasaPam} ·{" "}
-          {mission.operator}
+          {mission.code} · {mission.officialNames.vast} ·{" "}
+          {mission.officialNames.nasaPam} · {mission.operator}
         </p>
         <h1 className="display mt-2 text-5xl md:text-6xl">
           {lang === "el" ? "Αποστολή" : "Mission"}
@@ -105,26 +110,75 @@ export default function MissionPage() {
           ))}
         </div>
         <p className="mt-3 text-sm text-[#8b95ab]">{mission.behind[lang]}</p>
+        {(esaWhy || greeceWhy) && (
+          <p className="mt-3 max-w-3xl text-xs leading-relaxed text-[#8b95ab]">
+            <span className="font-mono uppercase tracking-[0.14em] text-[#7dd3fc]">
+              {ui.sources[lang]} · ESA / {lang === "el" ? "Ελλάδα" : "Greece"}
+            </span>
+            {esaWhy ? (
+              <>
+                {" · "}
+                <a
+                  href={esaWhy.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-[#f0d78c] hover:underline"
+                >
+                  {esaWhy.speaker}
+                </a>
+                <span className="text-[#8b95ab]"> · {esaWhy.role[lang]}</span>
+              </>
+            ) : null}
+            {greeceWhy ? (
+              <>
+                {" · "}
+                <a
+                  href={greeceWhy.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-[#f0d78c] hover:underline"
+                >
+                  {greeceWhy.speaker}
+                </a>
+                <span className="text-[#8b95ab]"> · {greeceWhy.role[lang]}</span>
+              </>
+            ) : null}
+            {esaChannel ? (
+              <>
+                {" · "}
+                <a
+                  href={esaChannel.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-[#7dd3fc] hover:underline"
+                >
+                  ESA
+                </a>
+              </>
+            ) : null}
+            {vastChannel ? (
+              <>
+                {" · "}
+                <a
+                  href={vastChannel.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-[#7dd3fc] hover:underline"
+                >
+                  Vast
+                </a>
+              </>
+            ) : null}
+          </p>
+        )}
       </section>
 
       {/* 4) Still-open trio */}
       <section className="panel rounded-3xl border border-[#7dd3fc]/25 p-5 md:p-6">
-        <div className="flex flex-wrap items-start justify-between gap-3">
-          <div>
-            <h2 className="display text-2xl md:text-3xl">
-              {lang === "el" ? "Τι μένει ανοιχτό" : "What remains open"}
-            </h2>
-            <p className="mt-2 max-w-2xl text-sm text-[#8b95ab]">
-              {mission.note[lang]}
-            </p>
-          </div>
-          <Link
-            href="/crew"
-            className="shrink-0 rounded-full border border-[var(--line)] px-3 py-1.5 text-xs text-[#f0d78c] hover:border-[#d4af37]/50"
-          >
-            {lang === "el" ? "Πλήρωμα →" : "Crew →"}
-          </Link>
-        </div>
+        <h2 className="display text-2xl md:text-3xl">{ui.stillOpen[lang]}</h2>
+        <p className="mt-2 max-w-2xl text-sm text-[#8b95ab]">
+          {mission.note[lang]}
+        </p>
         <div className="mt-5 grid gap-3 sm:grid-cols-3">
           {stillOpen.map((item) => (
             <div
