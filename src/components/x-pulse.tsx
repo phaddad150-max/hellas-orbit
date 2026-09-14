@@ -12,6 +12,7 @@ type Pulse = {
   source: "live" | "seed";
 };
 
+/** Offline seed only — never presented as live volume or fabricated posts. */
 const SEED: Pulse = {
   volume: 0,
   languages: { el: 0, en: 0 },
@@ -31,26 +32,33 @@ const SEED: Pulse = {
 export function XPulse() {
   const { lang } = useI18n();
   const [pulse, setPulse] = useState<Pulse>(SEED);
-  const isSeed = pulse.source === "seed";
+  const isSeed = pulse.source !== "live";
 
   useEffect(() => {
     fetch("/api/x-pulse")
       .then((r) => r.json())
       .then((d) => {
-        if (d && d.themes) setPulse(d);
+        // Only accept an explicit live payload — never promote seed as live
+        if (d && d.source === "live" && Array.isArray(d.themes) && d.themes.length) {
+          setPulse(d);
+        }
       })
-      .catch(() => {});
+      .catch(() => {
+        /* stay on honest seed */
+      });
   }, []);
 
   return (
     <div
       id="talk"
       className={`panel rounded-2xl p-4 ${
-        isSeed ? "border border-dashed border-[var(--line)] opacity-90" : ""
+        isSeed
+          ? "border border-dashed border-[var(--line)] bg-black/15 opacity-85"
+          : ""
       }`}
     >
-      <div className="flex items-center justify-between gap-2">
-        <p className="text-xs uppercase tracking-[0.2em] text-[#7dd3fc]">
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <p className="text-xs uppercase tracking-[0.2em] text-[#8b95ab]">
           {ui.pulseTitle[lang]}
         </p>
         {isSeed ? (
@@ -61,24 +69,24 @@ export function XPulse() {
           <span className="font-mono text-[10px] text-[#8b95ab]">X API</span>
         )}
       </div>
-      <p className="mt-3 text-sm leading-relaxed text-[#d5dceb]">
+      <p className="mt-3 text-sm leading-relaxed text-[#b7c0d4]">
         {pulse.summary[lang]}
       </p>
       {isSeed ? (
         <p className="mt-2 rounded-xl border border-dashed border-[var(--line)] bg-black/20 px-3 py-2 text-[11px] leading-relaxed text-[#8b95ab]">
           {lang === "el"
-            ? "Κενό ή καθυστέρηση ροής — όχι σφάλμα σελίδας. Κύρια πηγή σημάτων: ο πίνακας επιχειρήσεων (Ops) παραπάνω. "
-            : "Empty or delayed feed — not a page error. Primary signal source: the Ops board above. "}
+            ? "Κενό ή καθυστέρηση ροής — όχι σφάλμα σελίδας. Κύρια πηγή σημάτων: ο πίνακας επιχειρήσεων (Ops) παραπάνω. Δεν εμφανίζουμε ψεύτικο παλμό. "
+            : "Empty or delayed feed — not a page error. Primary signal source: the Ops board above. We never fake pulse. "}
           {ui.pulseEmpty[lang]}
         </p>
       ) : null}
-      <div className={`mt-3 flex flex-wrap gap-2 ${isSeed ? "opacity-70" : ""}`}>
+      <div className={`mt-3 flex flex-wrap gap-2 ${isSeed ? "opacity-55" : ""}`}>
         {pulse.themes.map((t) => (
           <span
             key={t.en}
             className={`rounded-full border px-3 py-1 text-xs ${
               isSeed
-                ? "border-[var(--line)] text-[#b7c0d4]"
+                ? "border-[var(--line)] text-[#8b95ab]"
                 : "border-[var(--line)] text-[#f0d78c]"
             }`}
           >

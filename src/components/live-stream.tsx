@@ -21,12 +21,16 @@ export function LiveStream() {
   }, [current.id]);
 
   return (
-    <div id="live" className="overflow-hidden rounded-2xl border border-[var(--line)]">
+    <div
+      id="live"
+      className="overflow-hidden rounded-2xl border border-[var(--line)] shadow-[0_0_0_1px_rgba(125,211,252,0.08)]"
+    >
       <div className="flex items-center justify-between gap-2 border-b border-[var(--line)] px-3 py-2">
         <p className="flex items-center gap-2 text-[10px] uppercase tracking-[0.28em] text-[#7dd3fc]">
           <span className="live-dot" aria-hidden />
-          {lang === "el" ? "LIVE streams" : "LIVE streams"}
+          {lang === "el" ? "Cinema stage · επίσημα feeds" : "Cinema stage · official feeds"}
         </p>
+        <p className="font-mono text-[10px] text-[#8b95ab]">NASA · SpaceX</p>
       </div>
       <div className="flex flex-wrap gap-1 border-b border-[var(--line)] p-2">
         {streams.map((s) => (
@@ -44,7 +48,7 @@ export function LiveStream() {
           </button>
         ))}
       </div>
-      <div className="relative aspect-video min-h-[200px] bg-black">
+      <div className="relative aspect-video min-h-[min(70vh,640px)] w-full bg-black">
         {!ready ? (
           <div
             className="pointer-events-none absolute inset-0 z-[2] flex flex-col items-center justify-center gap-2 bg-black/80"
@@ -55,13 +59,18 @@ export function LiveStream() {
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#8b95ab]">
               {lang === "el" ? "Φόρτωση stream…" : "Loading stream…"}
             </p>
+            <p className="max-w-sm px-4 text-center text-[11px] text-[#6b7280]">
+              {lang === "el"
+                ? "Επίσημο YouTube embed — χωρίς εξωτερικές λίστες συνδέσμων."
+                : "Official YouTube embed — no outbound link lists."}
+            </p>
           </div>
         ) : null}
         <iframe
           key={current.id}
           title={current[lang]}
           src={embedSrc(current.src)}
-          className="relative z-[1] h-full w-full"
+          className="absolute inset-0 z-[1] h-full w-full"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
           onLoad={() => setReady(true)}

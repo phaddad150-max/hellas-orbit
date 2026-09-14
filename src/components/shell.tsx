@@ -44,7 +44,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
       <Starfield />
       <div className="pointer-events-none fixed inset-0 z-0 bg-[radial-gradient(ellipse_at_top,rgba(26,111,212,0.18),transparent_55%),radial-gradient(ellipse_at_bottom,rgba(212,175,55,0.09),transparent_50%)]" />
 
-      <header className="sticky top-0 z-40 border-b border-[var(--line)] bg-[#04070f]/90 backdrop-blur-xl supports-[backdrop-filter]:bg-[#04070f]/78">
+      <header className="site-header sticky top-0 z-40 border-b border-[var(--line)] bg-[#04070f]/92 backdrop-blur-xl supports-[backdrop-filter]:bg-[#04070f]/82">
         <div className="hellenic-bar h-1 w-full" aria-hidden />
         <div className="meander h-1.5 w-full" />
         <div className="mx-auto flex max-w-7xl items-center gap-2 px-3 py-2.5 sm:gap-3 sm:px-4 sm:py-3">
@@ -126,7 +126,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
               className="relative z-40 max-h-[min(75vh,32rem)] overflow-y-auto overscroll-contain border-t border-[var(--line)] bg-[#04070f]/98 px-3 py-3 xl:hidden"
             >
               <nav className="grid gap-0.5" aria-label="Primary">
-                {nav.map((item) => {
+                {nav.map((item, i) => {
                   const active = isActive(path, item.href);
                   return (
                     <Link
@@ -135,13 +135,16 @@ export function Shell({ children }: { children: React.ReactNode }) {
                       onClick={() => setOpen(false)}
                       aria-current={active ? "page" : undefined}
                       className={cn(
-                        "flex items-center justify-between rounded-xl px-3 py-3 text-sm transition",
+                        "flex items-center gap-3 rounded-xl px-3 py-3 text-sm transition",
                         active
                           ? "bg-[#d4af37]/15 text-[#f0d78c] ring-1 ring-[#d4af37]/45"
                           : "text-[#d5dceb] hover:bg-white/5",
                       )}
                     >
-                      <span>{item[lang]}</span>
+                      <span className="w-5 shrink-0 font-mono text-[10px] text-[#7dd3fc]">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <span className="min-w-0 flex-1">{item[lang]}</span>
                       {active ? (
                         <span className="font-mono text-[10px] uppercase tracking-wide text-[#d4af37]">
                           {lang === "el" ? "εδώ" : "here"}
@@ -160,7 +163,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
         ) : null}
       </header>
 
-      <main className="relative z-10 mx-auto w-full max-w-7xl px-4 py-8 sm:py-10 md:py-12">
+      <main className="relative z-10 mx-auto w-full max-w-7xl px-4 py-8 sm:py-10 md:py-12 [&_.space-y-12]:space-y-10 md:[&_.space-y-12]:space-y-14">
         {children}
       </main>
 

@@ -32,7 +32,9 @@ export function OpsBoard() {
         setItems(d.items ?? []);
         setUpdatedAt(d.updatedAt ?? "");
       })
-      .catch(() => {})
+      .catch(() => {
+        /* keep last good items; never invent feed rows */
+      })
       .finally(() => setLoading(false));
   }, []);
 
@@ -46,11 +48,9 @@ export function OpsBoard() {
     if (tab === "leaders") return [];
     const list = items.filter((i) => i.source === tab);
     const related = list.filter((i) => i.missionRelated);
-    return (
-      related.length
-        ? [...related, ...list.filter((i) => !i.missionRelated)]
-        : list
-    ).slice(0, 10);
+    const rest = list.filter((i) => !i.missionRelated);
+    // Mission-related first; never pad with fake content
+    return (related.length ? [...related, ...rest] : list).slice(0, 10);
   }, [items, tab]);
 
   const labels: Record<Tab, { el: string; en: string }> = {
@@ -160,8 +160,8 @@ export function OpsBoard() {
                   </p>
                   <p className="mt-1 text-xs leading-relaxed text-[#8b95ab]">
                     {lang === "el"
-                      ? "Οι ροές καθυστερούν ή είναι προσωρινά κενές. Δοκιμάστε Ανανέωση — τα σχετικά με την αποστολή εμφανίζονται πρώτα όταν φτάσουν."
-                      : "Feeds are delayed or temporarily empty. Try Refresh — mission-related items sort first when they arrive."}
+                      ? "Οι ροές καθυστερούν ή είναι προσωρινά κενές. Δοκιμάστε Ανανέωση — τα σχετικά με την αποστολή εμφανίζονται πρώτα όταν φτάσουν. Δεν εμφανίζουμε ψεύτικες ενημερώσεις."
+                      : "Feeds are delayed or temporarily empty. Try Refresh — mission-related items sort first when they arrive. We never invent updates."}
                   </p>
                 </>
               )}

@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 :root {
+  --header-h: 4.75rem;
   --craft-bg: #eef2f6;
   --craft-bg-2: #f7f9fb;
   --craft-ink: #1a2433;
@@ -413,4 +414,80 @@ a {
   .countdown-cell::after {
     animation: none !important;
   }
+}
+
+
+/* Pitch surface — section rhythm + cinema stage chrome (Live embeds use these) */
+.section-kicker {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--cyan);
+}
+
+.cinema-stage {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: #000;
+  box-shadow:
+    0 0 0 1px rgba(125, 211, 252, 0.06),
+    0 28px 80px rgba(0, 0, 0, 0.55);
+}
+
+.cinema-stage-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(10, 18, 36, 0.95), rgba(4, 7, 15, 0.92));
+  padding: 0.5rem 0.75rem;
+}
+
+.cinema-loader {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background: rgba(0, 0, 0, 0.82);
+}
+
+.cinema-loader-bar {
+  height: 2px;
+  width: min(40%, 12rem);
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(125, 211, 252, 0.15);
+}
+
+.cinema-loader-bar > span {
+  display: block;
+  height: 100%;
+  width: 40%;
+  background: linear-gradient(90deg, transparent, var(--cyan), var(--gold-2), transparent);
+  animation: cinemaSweep 1.1s ease-in-out infinite;
+}
+
+@keyframes cinemaSweep {
+  from { transform: translateX(-120%); }
+  to { transform: translateX(280%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cinema-loader-bar > span {
+    animation: none;
+    width: 100%;
+    opacity: 0.6;
+  }
+}
+
+.site-header {
+  --header-h: 4.75rem;
 }

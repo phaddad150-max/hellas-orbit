@@ -8,7 +8,6 @@ import { LivePulse } from "@/components/live-pulse";
 import { LiveStream } from "@/components/live-stream";
 import { OpsBoard } from "@/components/ops-board";
 import { StarlinkNote } from "@/components/starlink-note";
-import { StoryChips } from "@/components/story-chips";
 import { XPulse } from "@/components/x-pulse";
 import { mission } from "@/lib/data";
 import { ui } from "@/lib/copy";
@@ -19,14 +18,16 @@ export default function LivePage() {
 
   const desk =
     lang === "el"
-      ? "Γραφείο επιχειρήσεων για Vast-PAM-1 / PAM-6 — προορισμός ISS. Ζωντανά feeds NASA / SpaceX / ESA και η διαδρομή του Γολέμη."
-      : "Ops desk for Vast-PAM-1 / PAM-6 — ISS destination. Live NASA / SpaceX / ESA feeds and Golemis’s path.";
+      ? "Γραφείο επιχειρήσεων για Vast-PAM-1 · PAM-6 — προορισμός ISS. Επίσημα feeds NASA / SpaceX / ESA."
+      : "Ops desk for Vast-PAM-1 · PAM-6 — ISS destination. Official NASA / SpaceX / ESA feeds.";
+
+  const officialPair = `${mission.officialNames.vast} · ${mission.officialNames.nasaPam}`;
 
   return (
-    <div className="space-y-10">
-      <header className="space-y-5">
+    <div className="space-y-8">
+      <header className="space-y-4">
         <div className="flex flex-wrap items-start justify-between gap-4">
-          <div>
+          <div className="min-w-0 flex-1">
             <div className="flex flex-wrap items-center gap-3">
               <GreekFlag className="h-7 w-10" />
               <LivePulse href={null} />
@@ -38,6 +39,23 @@ export default function LivePage() {
             <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#b7c0d4]">
               {desk}
             </p>
+            <nav
+              aria-label={lang === "el" ? "Σχετικές σελίδες" : "Related pages"}
+              className="mt-4 flex flex-wrap gap-2"
+            >
+              <Link
+                href="/mission"
+                className="rounded-full border border-[var(--line)] px-3 py-1.5 text-[11px] uppercase tracking-wide text-[#f0d78c] hover:border-[#d4af37]/50"
+              >
+                {lang === "el" ? "Αποστολή" : "Mission"}
+              </Link>
+              <Link
+                href="/first-greek"
+                className="rounded-full border border-[var(--line)] px-3 py-1.5 text-[11px] uppercase tracking-wide text-[#f0d78c] hover:border-[#d4af37]/50"
+              >
+                {lang === "el" ? "Πρώτος Έλληνας" : "First Greek"}
+              </Link>
+            </nav>
           </div>
           <div className="panel w-full max-w-sm rounded-2xl p-4 sm:w-auto">
             <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#7dd3fc]">
@@ -47,16 +65,19 @@ export default function LivePage() {
               {mission.status[lang]}
             </p>
             <p className="mt-1 text-xs text-[#8b95ab]">
-              {mission.windowLabel[lang]} · {mission.code}
+              {mission.windowLabel[lang]}
+            </p>
+            <p className="mt-2 font-mono text-[10px] uppercase tracking-wide text-[#b7c0d4]">
+              {mission.code} · {officialPair}
             </p>
             <div className="mt-4">
               <Countdown />
             </div>
           </div>
         </div>
-        <StoryChips />
       </header>
 
+      {/* 1 — Cinema stage: official embeds dominate */}
       <section aria-labelledby="live-streams-heading" className="space-y-3">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <h2
@@ -71,6 +92,7 @@ export default function LivePage() {
         <LiveStream />
       </section>
 
+      {/* 2 — ISS + Starlink secondary row */}
       <section
         aria-labelledby="sky-sensors-heading"
         className="space-y-3"
@@ -87,6 +109,7 @@ export default function LivePage() {
         </div>
       </section>
 
+      {/* 3 — OpsBoard primary signal */}
       <section aria-labelledby="ops-heading" className="space-y-3">
         <h2
           id="ops-heading"
@@ -97,12 +120,19 @@ export default function LivePage() {
         <OpsBoard />
       </section>
 
-      <section aria-labelledby="pulse-heading" className="space-y-3">
+      {/* 4 — XPulse demoted */}
+      <section
+        aria-labelledby="pulse-heading"
+        className="space-y-2 opacity-90"
+      >
         <h2
           id="pulse-heading"
-          className="text-xs uppercase tracking-[0.28em] text-[#8b95ab]"
+          className="text-[10px] uppercase tracking-[0.28em] text-[#8b95ab]"
         >
           {ui.pulseTitle[lang]}
+          <span className="ml-2 font-mono tracking-normal text-[#8b95ab]/80">
+            · {lang === "el" ? "δευτερεύον" : "secondary"}
+          </span>
         </h2>
         <XPulse />
       </section>
@@ -110,13 +140,13 @@ export default function LivePage() {
       <div className="flex flex-wrap gap-2 border-t border-[var(--line)] pt-6">
         <Link
           href="/landscape"
-          className="rounded-full border border-[var(--line)] px-3 py-1.5 text-[11px] uppercase tracking-wide text-[#f0d78c] hover:border-[#d4af37]/50"
+          className="rounded-full border border-[var(--line)] px-3 py-1.5 text-[11px] uppercase tracking-wide text-[#8b95ab] hover:border-[#d4af37]/40 hover:text-[#f0d78c]"
         >
           {lang === "el" ? "Η Ελλάδα στο Διάστημα →" : "Greece in Space →"}
         </Link>
         <Link
           href="/future"
-          className="rounded-full border border-[var(--line)] px-3 py-1.5 text-[11px] uppercase tracking-wide text-[#f0d78c] hover:border-[#d4af37]/50"
+          className="rounded-full border border-[var(--line)] px-3 py-1.5 text-[11px] uppercase tracking-wide text-[#8b95ab] hover:border-[#d4af37]/40 hover:text-[#f0d78c]"
         >
           {lang === "el" ? "Επόμενη γενιά →" : "Next generation →"}
         </Link>

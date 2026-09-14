@@ -2,11 +2,18 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { nav } from "@/lib/copy";
 import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
-/** In-page story flow: Home → First Greek → Mission → Crew → Live → Greece in Space → Next gen */
+/** Learning-arc chips only — Crew/Live live in primary nav, not duplicated here. */
+const STORY = [
+  { href: "/", el: "Κέντρο", en: "Control" },
+  { href: "/first-greek", el: "Πρώτος Έλληνας", en: "First Greek" },
+  { href: "/mission", el: "Αποστολή", en: "Mission" },
+  { href: "/landscape", el: "Ελλάδα στο Διάστημα", en: "Greece in Space" },
+  { href: "/future", el: "Επόμενη γενιά", en: "Next gen" },
+] as const;
+
 export function StoryChips({ className = "" }: { className?: string }) {
   const { lang } = useI18n();
   const path = usePathname();
@@ -16,7 +23,7 @@ export function StoryChips({ className = "" }: { className?: string }) {
       aria-label={lang === "el" ? "Διαδρομή ιστορίας" : "Story flow"}
       className={cn("flex flex-wrap gap-2", className)}
     >
-      {nav.map((item) => {
+      {STORY.map((item) => {
         const active =
           item.href === "/"
             ? path === "/"
