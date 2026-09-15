@@ -144,6 +144,7 @@ export const golemis = {
 export const crew = [
   {
     id: "pesquet",
+    photo: "/brand/pesquet.jpg",
     name: { el: "Τόμας Πέσκε", en: "Thomas Pesquet" } satisfies Localized,
     nation: { el: "Γαλλία", en: "France" } satisfies Localized,
     flag: "🇫🇷",
@@ -160,6 +161,7 @@ export const crew = [
   },
   {
     id: "svoboda",
+    photo: "/brand/svoboda.jpg",
     name: { el: "Άλες Σβόμποντα", en: "Aleš Svoboda" } satisfies Localized,
     nation: { el: "Τσεχία", en: "Czechia" } satisfies Localized,
     flag: "🇨🇿",
@@ -176,6 +178,7 @@ export const crew = [
   },
   {
     id: "golemis",
+    photo: "/brand/golemis.jpg",
     name: { el: "Αδριανός Γολέμης", en: "Adrianos Golemis" } satisfies Localized,
     nation: { el: "Ελλάδα", en: "Greece" } satisfies Localized,
     flag: "🇬🇷",

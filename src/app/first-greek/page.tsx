@@ -11,9 +11,9 @@ export default function PersonPage() {
 
   return (
     <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-      <div className="panel overflow-hidden rounded-2xl">
+      <div className="panel overflow-hidden rounded-2xl bg-[#f3f5f8]">
         <Image
-          src="/brand/astronaut.png"
+          src="/brand/golemis.jpg"
           alt={golemis.name[lang]}
           width={800}
           height={1000}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { LiveIss } from "@/components/live-iss";
 import { Sheet } from "@/components/sheet";
 import { flightSteps, groundTeams, openLights, sources } from "@/lib/console";
@@ -32,12 +33,31 @@ export default function MissionPage() {
               key={c.id}
               type="button"
               onClick={() => setCrewId(c.id)}
-              className="panel min-h-28 rounded-2xl p-4 text-left"
+              className="panel overflow-hidden rounded-2xl p-0 text-left"
             >
-              <p className="text-[10px] uppercase tracking-wide text-[#7dd3fc]">
-                {c.role[lang]}
-              </p>
-              <p className="display mt-2 text-lg leading-tight">{c.name[lang]}</p>
+              <div className="aspect-[3/4] bg-[#f3f5f8]">
+                {"photo" in c && c.photo ? (
+                  <Image
+                    src={c.photo}
+                    alt=""
+                    width={480}
+                    height={640}
+                    className="h-full w-full object-cover object-top"
+                  />
+                ) : (
+                  <div className="flex h-full items-center justify-center font-mono text-sm text-[#8b95ab]">
+                    TBA
+                  </div>
+                )}
+              </div>
+              <div className="p-3">
+                <p className="text-[10px] uppercase tracking-wide text-[#7dd3fc]">
+                  {c.role[lang]}
+                </p>
+                <p className="display mt-1 text-base leading-tight sm:text-lg">
+                  {c.name[lang]}
+                </p>
+              </div>
             </button>
           ))}
         </div>
@@ -119,8 +139,21 @@ export default function MissionPage() {
         title={member?.name[lang] ?? ""}
       >
         {member ? (
-          <div className="space-y-2 text-sm text-[#d5dceb]">
-            <p>{member.role[lang]} · {member.agency} · {member.nation[lang]}</p>
+          <div className="space-y-3 text-sm text-[#d5dceb]">
+            {"photo" in member && member.photo ? (
+              <div className="overflow-hidden rounded-xl bg-[#f3f5f8]">
+                <Image
+                  src={member.photo}
+                  alt=""
+                  width={480}
+                  height={640}
+                  className="mx-auto max-h-56 w-auto object-cover object-top"
+                />
+              </div>
+            ) : null}
+            <p>
+              {member.role[lang]} · {member.agency} · {member.nation[lang]}
+            </p>
             <p>{member.bio[lang]}</p>
           </div>
         ) : null}
