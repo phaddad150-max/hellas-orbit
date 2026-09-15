@@ -28,35 +28,24 @@ export function Countdown() {
     { n: t.days, l: ui.days[lang] },
     { n: t.hours, l: ui.hours[lang] },
     { n: t.minutes, l: ui.minutes[lang] },
-    { n: t.seconds, l: ui.seconds[lang], pulse: true },
+    { n: t.seconds, l: ui.seconds[lang] },
   ];
 
   return (
     <div>
-      <p className="mb-2 flex items-center gap-2 text-[10px] uppercase tracking-[0.22em] text-[#7dd3fc]">
-        <span className="live-dot" aria-hidden />
-        {lang === "el" ? "Αντίστροφη μέτρηση · NET" : "Countdown · NET"}
-      </p>
       <div className="grid grid-cols-4 gap-2">
         {cells.map((c) => (
-          <div
-            key={c.l}
-            className={`panel countdown-cell rounded-xl px-2 py-3 text-center ${
-              c.pulse ? "pulse-gold" : ""
-            }`}
-          >
-            <div className="font-mono text-2xl text-[#f0d78c] md:text-3xl">
+          <div key={c.l} className="panel rounded-xl px-2 py-3 text-center">
+            <div className="font-mono text-xl text-[#f0d78c] sm:text-2xl">
               {c.n > 99 ? c.n : pad(c.n)}
             </div>
-            <div className="mt-1 text-[10px] uppercase tracking-[0.18em] text-[#b7c0d4]">
+            <div className="mt-1 text-[10px] uppercase tracking-wide text-[#b7c0d4]">
               {c.l}
             </div>
           </div>
         ))}
       </div>
-      <p className="mt-3 text-xs leading-relaxed text-[#b7c0d4]">
-        {ui.netNote[lang]}
-      </p>
+      <p className="mt-2 text-xs text-[#8b95ab]">{ui.netNote[lang]}</p>
     </div>
   );
 }
