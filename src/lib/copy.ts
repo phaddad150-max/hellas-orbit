@@ -53,6 +53,15 @@ export const ui = {
     el: "Ανεπίσημος πίνακας παρακολούθησης. Δεν είναι NASA, ESA, Vast, SpaceX ή ΕΛΚΕΔ.",
     en: "Unofficial tracker. Not NASA, ESA, Vast, SpaceX or HSC.",
   },
+  firstGreek: {
+    el: "Πρώτος Έλληνας σε τροχιά",
+    en: "First Greek in orbit",
+  },
+  namesLead: {
+    el: "Απόλλων, Άρτεμις, Ωρίων — ελληνικά ονόματα ήδη στο Διάστημα.",
+    en: "Apollo, Artemis, Orion — Greek names already in space.",
+  },
+  explore: { el: "Περισσότερα", en: "More" },
   homeTitle: {
     el: "Κονσόλα αποστολής",
     en: "Mission console",
