@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { LiveIss } from "@/components/live-iss";
 import { Sheet } from "@/components/sheet";
 import { flightSteps, groundTeams, openLights, sources } from "@/lib/console";
@@ -37,7 +36,9 @@ export default function MissionPage() {
             >
               <div className="aspect-[3/4] bg-[#f3f5f8]">
                 {"photo" in c && c.photo ? (
-                  <Image
+                  // Native img so portraits always paint (Next optimizer was unreliable here).
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
                     src={c.photo}
                     alt=""
                     width={480}
@@ -142,7 +143,8 @@ export default function MissionPage() {
           <div className="space-y-3 text-sm text-[#d5dceb]">
             {"photo" in member && member.photo ? (
               <div className="overflow-hidden rounded-xl bg-[#f3f5f8]">
-                <Image
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
                   src={member.photo}
                   alt=""
                   width={480}

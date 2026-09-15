@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { personChips } from "@/lib/console";
 import { ui } from "@/lib/copy";
 import { golemis } from "@/lib/data";
@@ -12,12 +11,12 @@ export default function PersonPage() {
   return (
     <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
       <div className="panel overflow-hidden rounded-2xl bg-[#f3f5f8]">
-        <Image
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
           src="/brand/golemis.jpg"
           alt={golemis.name[lang]}
           width={800}
           height={1000}
-          priority
           className="h-[42vh] max-h-[360px] w-full object-cover object-top lg:h-auto lg:max-h-[520px]"
         />
       </div>
