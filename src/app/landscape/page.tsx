@@ -1,7 +1,5 @@
 "use client";
 
-import Link from "next/link";
-import { GreekFlag } from "@/components/greek-flag";
 import { NameSky } from "@/components/name-sky";
 import { greekNames } from "@/lib/data";
 import { greecePath } from "@/lib/greece";
@@ -27,40 +25,17 @@ export default function LandscapePage() {
   return (
     <div className="space-y-12">
       <header className="max-w-3xl">
-        <div className="flex flex-wrap items-center gap-3">
-          <GreekFlag className="h-7 w-10" />
-          <p className="text-xs uppercase tracking-[0.28em] text-[#7dd3fc]">
-            🇬🇷 ESA · HELLAS-SPACE
-          </p>
-        </div>
+        <p className="text-xs uppercase tracking-[0.28em] text-[#7dd3fc]">
+          ESA · HELLAS-SPACE
+        </p>
         <h1 className="display mt-2 text-5xl md:text-6xl">
           {lang === "el" ? "Η Ελλάδα στο Διάστημα" : "Greece in Space"}
         </h1>
         <p className="mt-4 text-lg leading-relaxed text-[#d5dceb]">
           {lang === "el"
-            ? "Μέλος ESA, δορυφόροι, εργοστάσιο, και ο πρώτος γιατρός-αστροναύτης — και τα ελληνικά ονόματα που ήδη ταξιδεύουν στον ουρανό."
-            : "ESA member, satellites, a factory, and the first doctor-astronaut — plus the Greek names already travelling through the sky."}
+            ? "Μέλος ESA, δορυφόροι, εργοστάσιο, και ο πρώτος γιατρός-αστροναύτης."
+            : "ESA member, satellites, a factory, and the first doctor-astronaut."}
         </p>
-        <div className="mt-5 flex flex-wrap gap-2 text-xs">
-          <a
-            href="#path"
-            className="rounded-full border border-[var(--line)] px-3 py-1.5 text-[#d5dceb] hover:border-[#d4af37]/50"
-          >
-            {lang === "el" ? "Η διαδρομή" : "The path"}
-          </a>
-          <a
-            href="#space-speaks-greek"
-            className="rounded-full border border-[var(--line)] px-3 py-1.5 text-[#f0d78c] hover:border-[#d4af37]/50"
-          >
-            {ui.namesTitle[lang]}
-          </a>
-          <Link
-            href="/future"
-            className="rounded-full border border-[#d4af37]/50 bg-[#d4af37]/10 px-3 py-1.5 text-[#f0d78c] hover:border-[#d4af37]"
-          >
-            {lang === "el" ? "Επόμενη γενιά →" : "Next generation →"}
-          </Link>
-        </div>
       </header>
 
       <section id="path" className="scroll-mt-28">
@@ -154,20 +129,6 @@ export default function LandscapePage() {
         ) : null}
       </section>
 
-      <section className="panel rounded-3xl p-6 md:p-8">
-        <h2 className="display text-2xl md:text-3xl">
-          {lang === "el" ? "Επόμενο βήμα" : "Next step"}
-        </h2>
-        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#d5dceb]">
-          {ui.futureLead[lang]}
-        </p>
-        <Link
-          href="/future"
-          className="mt-5 inline-flex rounded-full border border-[#d4af37]/60 bg-[#d4af37]/15 px-5 py-2.5 text-sm font-medium text-[#f0d78c] hover:border-[#d4af37]"
-        >
-          {lang === "el" ? "Επόμενη γενιά →" : "Next generation →"}
-        </Link>
-      </section>
     </div>
   );
 }

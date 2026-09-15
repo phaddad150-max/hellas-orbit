@@ -1,14 +1,14 @@
 import type { Lang } from "./types";
 
-/** Primary nav — full adult IA. */
+/** Primary nav — short labels so the bar fits without wrapping. */
 export const nav = [
-  { href: "/", el: "Κέντρο αποστολής", en: "Mission control" },
-  { href: "/first-greek", el: "Ο πρώτος Έλληνας", en: "The first Greek" },
+  { href: "/", el: "Αρχή", en: "Home" },
+  { href: "/live", el: "Ζωντανά", en: "Live" },
+  { href: "/first-greek", el: "Πρώτος", en: "First" },
   { href: "/mission", el: "Αποστολή", en: "Mission" },
   { href: "/crew", el: "Πλήρωμα", en: "Crew" },
-  { href: "/live", el: "Ζωντανά", en: "Live" },
-  { href: "/landscape", el: "Η Ελλάδα στο Διάστημα", en: "Greece in Space" },
-  { href: "/future", el: "Επόμενη γενιά", en: "Next generation" },
+  { href: "/landscape", el: "Ελλάδα", en: "Greece" },
+  { href: "/future", el: "Γενιά", en: "Next" },
 ] as const;
 
 export const ui = {

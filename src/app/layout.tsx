@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { EB_Garamond, JetBrains_Mono, Noto_Sans } from "next/font/google";
 import { I18nProvider } from "@/lib/i18n";
 import { Shell } from "@/components/shell";
@@ -26,6 +26,13 @@ export const metadata: Metadata = {
   title: "Hellas Orbit · Ελλάδα σε τροχιά",
   description:
     "Δωρεάν πίνακας για Έλληνες στην Ελλάδα και το εξωτερικό: ο δρ Αδριανός Γολέμης, ESA, ελληνικοί δορυφόροι και η πρώτη πτήση σε τροχιά.",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#04070f",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

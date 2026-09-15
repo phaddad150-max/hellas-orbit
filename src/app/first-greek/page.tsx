@@ -1,8 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
-import { GreekFlag } from "@/components/greek-flag";
 import { golemis, mission } from "@/lib/data";
 import { ui } from "@/lib/copy";
 import { useI18n } from "@/lib/i18n";
@@ -14,47 +12,46 @@ export default function FirstGreekPage() {
   return (
     <div className="space-y-8">
       <header className="grid gap-6 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-stretch">
-        <div className="portrait-stage panel relative overflow-hidden rounded-3xl">
+        <div className="portrait-stage panel relative overflow-hidden rounded-2xl md:rounded-3xl">
           <Image
             src="/brand/astronaut.png"
             alt={imageAlt}
             width={800}
             height={1000}
             priority
-            className="h-full min-h-[360px] w-full object-cover object-top sm:min-h-[420px] md:min-h-[520px]"
+            className="h-[48vh] max-h-[380px] w-full object-cover object-top lg:h-full lg:max-h-none lg:min-h-[520px]"
           />
           <div
-            className="portrait-scrim pointer-events-none absolute inset-0"
+            className="portrait-scrim pointer-events-none absolute inset-0 hidden lg:block"
             aria-hidden
           />
-          <div className="absolute inset-x-0 bottom-0 z-10 flex max-h-[78%] flex-col gap-2 overflow-y-auto overscroll-contain p-4 sm:gap-3 sm:p-5 md:max-h-none md:p-7">
-            <div className="flex flex-wrap items-center gap-2">
-              <GreekFlag className="h-5 w-[1.875rem] sm:h-6 sm:w-9" />
-              <p className="portrait-overlay-copy text-[10px] font-medium uppercase tracking-[0.28em] text-[#7dd3fc]">
-                🇬🇷 {ui.firstGreek[lang]}
-              </p>
-            </div>
-            <h1 className="display portrait-overlay-copy text-[1.65rem] leading-tight text-white sm:text-3xl md:text-4xl lg:text-5xl">
+          <div className="absolute inset-x-0 bottom-0 z-10 hidden flex-col gap-3 p-7 lg:flex">
+            <p className="portrait-overlay-copy text-[10px] font-medium uppercase tracking-[0.28em] text-[#7dd3fc]">
+              {ui.firstGreek[lang]}
+            </p>
+            <h1 className="display portrait-overlay-copy text-5xl leading-tight text-white">
               {golemis.name[lang]}
             </h1>
-            <p className="portrait-overlay-copy text-xs font-medium text-[#f0d78c] sm:text-sm md:text-base">
+            <p className="portrait-overlay-copy text-base font-medium text-[#f0d78c]">
               {golemis.role[lang]} · {golemis.from[lang]}
             </p>
-            <p className="portrait-overlay-copy line-clamp-3 max-w-xl text-[13px] leading-relaxed text-[#e8edf7] sm:line-clamp-4 sm:text-sm md:line-clamp-none md:text-[15px]">
+            <p className="portrait-overlay-copy max-w-xl text-[15px] leading-relaxed text-[#e8edf7]">
               {golemis.story[lang]}
             </p>
-            <div className="mt-1 flex flex-wrap gap-1.5 sm:gap-2">
-              {golemis.facts.map((f) => (
-                <span
-                  key={f.en}
-                  className="rounded-full border border-[#d4af37]/35 bg-[#04070f]/70 px-2 py-1 text-[10px] leading-snug text-[#e8edf7] backdrop-blur-sm sm:px-2.5 sm:text-[11px]"
-                >
-                  ★ {f[lang]}
-                </span>
-              ))}
-            </div>
-            <p className="text-[10px] text-[#a8b0c2]">{ui.illustration[lang]}</p>
           </div>
+        </div>
+
+        <div className="space-y-3 lg:hidden">
+          <p className="text-[10px] font-medium uppercase tracking-[0.28em] text-[#7dd3fc]">
+            {ui.firstGreek[lang]}
+          </p>
+          <h1 className="display text-3xl leading-tight">{golemis.name[lang]}</h1>
+          <p className="text-sm font-medium text-[#f0d78c]">
+            {golemis.role[lang]} · {golemis.from[lang]}
+          </p>
+          <p className="text-[15px] leading-relaxed text-[#d5dceb]">
+            {golemis.story[lang]}
+          </p>
         </div>
 
         <aside className="panel flex flex-col rounded-3xl p-5 md:p-7">
@@ -120,20 +117,6 @@ export default function FirstGreekPage() {
                   ? "Έγκριση MCOP · τέταρτο μέλος πληρώματος · ακριβής ημερομηνία εκτόξευσης."
                   : "MCOP approval · fourth crewmember · exact launch date."}
               </p>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              <Link
-                href="/mission"
-                className="rounded-full border border-[#d4af37]/60 bg-[#d4af37]/15 px-4 py-2 text-xs font-medium text-[#f0d78c] hover:border-[#d4af37]"
-              >
-                {lang === "el" ? "Αποστολή →" : "Mission →"}
-              </Link>
-              <Link
-                href="/crew"
-                className="rounded-full border border-[var(--line)] px-4 py-2 text-xs text-[#d5dceb] hover:border-[#d4af37]/50 hover:text-[#f0d78c]"
-              >
-                {lang === "el" ? "Πλήρωμα →" : "Crew →"}
-              </Link>
             </div>
           </div>
         </aside>

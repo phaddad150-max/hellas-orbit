@@ -153,11 +153,7 @@ export default function CrewPage() {
                     {ui.stillOpen[lang]}
                   </span>
                 ) : null}
-                {isGolemis ? (
-                  <span className="rounded-full border border-[#d4af37]/45 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wide text-[#f0d78c]">
-                    🇬🇷 Hellas
-                  </span>
-                ) : null}
+
               </div>
               <h2
                 className={`display mt-2 text-xl break-words sm:text-2xl ${

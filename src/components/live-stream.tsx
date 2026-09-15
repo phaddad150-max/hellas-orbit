@@ -48,7 +48,7 @@ export function LiveStream() {
           </button>
         ))}
       </div>
-      <div className="relative aspect-video min-h-[min(70vh,640px)] w-full bg-black">
+      <div className="relative aspect-video w-full bg-black md:min-h-[min(56vh,560px)]">
         {!ready ? (
           <div
             className="pointer-events-none absolute inset-0 z-[2] flex flex-col items-center justify-center gap-2 bg-black/80"

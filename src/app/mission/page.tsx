@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { ExternalLink } from "lucide-react";
 import {
   golemis,
@@ -85,12 +84,7 @@ export default function MissionPage() {
                 : "Subject to MCOP approval: Mission Specialist on Vast-PAM-1 / PAM-6 — third crewmember with commander Thomas Pesquet and pilot Aleš Svoboda. Training with Vast, SpaceX and NASA. He will run Greek experiments in orbit."}
             </p>
           </div>
-          <Link
-            href="/first-greek"
-            className="shrink-0 rounded-full border border-[var(--line)] px-3 py-1.5 text-xs text-[#f0d78c] hover:border-[#d4af37]/50"
-          >
-            {lang === "el" ? "Πλήρες προφίλ →" : "Full profile →"}
-          </Link>
+
         </div>
       </section>
 
