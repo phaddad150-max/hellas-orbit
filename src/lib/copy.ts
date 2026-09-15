@@ -1,9 +1,9 @@
 import type { Lang } from "./types";
 
 export const nav = [
-  { href: "/first-greek", el: "Άνθρωπος", en: "Person" },
-  { href: "/mission", el: "Αποστολή", en: "Mission" },
-  { href: "/landscape", el: "Ελλάδα", en: "Greece" },
+  { href: "/", el: "Κέντρο αποστολής", en: "Mission control" },
+  { href: "/first-greek", el: "1ος Έλληνας", en: "1st Greek" },
+  { href: "/names", el: "Ελληνικά ονόματα", en: "Greek names" },
   { href: "/future", el: "Γενιά", en: "Next" },
 ] as const;
 
@@ -81,8 +81,8 @@ export const ui = {
   },
   nextTitle: { el: "Επόμενη γενιά", en: "Next generation" },
   nextLead: {
-    el: "Υλικό για σχολεία όταν είναι έτοιμο.",
-    en: "School materials when they are ready.",
+    el: "Αν ο Αδριανός από τη Λάρισα φτάσει σε τροχιά, το επόμενο βήμα είναι μαθητές, γιατροί και μηχανικοί στην Ελλάδα.",
+    en: "If Adrianos from Larissa reaches orbit, the next step is pupils, doctors and engineers in Greece.",
   },
   nextCta: { el: "Ειδοποίησέ με", en: "Notify me" },
   crewTitle: { el: "Πλήρωμα", en: "Crew" },
@@ -92,7 +92,9 @@ export const ui = {
   contextMission: { el: "Αποστολή", en: "Mission" },
   contextCrew: { el: "Πλήρωμα", en: "Crew" },
   contextVehicle: { el: "Όχημα", en: "Vehicle" },
-  contextHellenic: { el: "Ελληνικό διάστημα", en: "Hellenic space" },
+  contextHellenic: { el: "ΕΛΚΕΔ", en: "HSC" },
+  namesTitle: { el: "Το Διάστημα μιλά ελληνικά", en: "Space speaks Greek" },
+  firstSection: { el: "1ος Έλληνας στο Διάστημα", en: "1st Greek in Space" },
   live: { el: "ΖΩΝΤΑΝΑ", en: "LIVE" },
   issNow: { el: "ISS", en: "ISS" },
   lat: { el: "Πλάτος", en: "Lat" },

@@ -28,7 +28,10 @@ export function Shell({ children }: { children: React.ReactNode }) {
             aria-label="Primary"
           >
             {nav.map((item) => {
-              const active = path === item.href || path.startsWith(`${item.href}/`);
+              const active =
+                item.href === "/"
+                  ? path === "/"
+                  : path === item.href || path.startsWith(`${item.href}/`);
               return (
                 <Link
                   key={item.href}
