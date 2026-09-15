@@ -1,5 +1,29 @@
 import type { Localized } from "./types";
 
+export const hellenicAdds: { title: Localized; body: Localized }[] = [
+  {
+    title: { el: "Δορυφόροι ήδη", en: "Satellites already" },
+    body: {
+      el: "ΕΛΚΕΔ και εθνικό πρόγραμμα μικροδορυφόρων: μάτια στη Γη (φωτιές, θάλασσα, γεωργία).",
+      en: "HSC and the national microsatellite programme: Earth eyes (fires, sea, farms).",
+    },
+  },
+  {
+    title: { el: "HELLAS-SPACE 2.0", en: "HELLAS-SPACE 2.0" },
+    body: {
+      el: "Εθνικό πρόγραμμα μέσω ESA — βιομηχανία και υπηρεσίες, όχι μόνο μία πτήση.",
+      en: "National programme via ESA — industry and services, not only one flight.",
+    },
+  },
+  {
+    title: { el: "Τι προσθέτει αυτή η πτήση", en: "What this flight adds" },
+    body: {
+      el: "Πρώτο ελληνικό όνομα σε ISS (υπό MCOP), πειράματα μικροβαρύτητας, γιατροί και STEM πίσω στην Ελλάδα.",
+      en: "A named Greek on ISS (pending MCOP), microgravity experiments, medicine and STEM returning home.",
+    },
+  },
+];
+
 export const personChips: Localized[] = [
   { el: "Γιατρός πτήσεων ESA", en: "ESA flight surgeon" },
   { el: "Ερασιτέχνης πιλότος / δύτης / ιστιοπλόος", en: "Amateur pilot / diver / sailor" },

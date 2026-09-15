@@ -1,5 +1,6 @@
 "use client";
 
+import { PersonContext } from "@/components/person-context";
 import { personChips } from "@/lib/console";
 import { ui } from "@/lib/copy";
 import { golemis } from "@/lib/data";
@@ -9,6 +10,7 @@ export default function PersonPage() {
   const { lang } = useI18n();
 
   return (
+    <div>
     <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
       <div className="panel overflow-hidden rounded-2xl bg-[#f3f5f8]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -37,6 +39,8 @@ export default function PersonPage() {
           ))}
         </ul>
       </div>
+    </div>
+    <PersonContext />
     </div>
   );
 }
