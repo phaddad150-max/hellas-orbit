@@ -2,6 +2,6 @@
 
 import { FirstGreekBlock } from "@/components/first-greek-block";
 
-export default function PersonPage() {
+export default function FirstGreekPage() {
   return <FirstGreekBlock />;
 }

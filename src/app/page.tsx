@@ -14,7 +14,7 @@ export default function HomePage() {
 
   return (
     <div className="space-y-16">
-      <section id="control" className="relative overflow-hidden rounded-2xl border border-[var(--line)] md:rounded-3xl">
+      <section className="relative overflow-hidden rounded-2xl border border-[var(--line)] md:rounded-3xl">
         <Image
           src="/brand/hero.jpg"
           alt=""
@@ -53,15 +53,9 @@ export default function HomePage() {
         <NamesSection />
       </section>
 
-      <section id="next" className="panel rounded-3xl p-6 text-center md:p-10">
+      <section id="next" className="space-y-4">
         <h2 className="display text-3xl md:text-5xl">{ui.nextTitle[lang]}</h2>
-        <p className="mx-auto mt-3 max-w-xl text-[#d5dceb]">{ui.nextLead[lang]}</p>
-        <a
-          href="/future"
-          className="mt-6 inline-flex min-h-11 items-center rounded-full bg-[#d4af37] px-5 text-sm text-[#1a1404]"
-        >
-          {ui.nextCta[lang]}
-        </a>
+        <p className="max-w-2xl text-[#d5dceb]">{ui.futureLead[lang]}</p>
       </section>
     </div>
   );

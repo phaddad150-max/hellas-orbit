@@ -1,6 +1,6 @@
 import type { Localized, LocalizedList } from "./types";
 
-export const LAUNCH_WINDOW = new Date("2027-07-01T00:00:00Z");
+export const LAUNCH_WINDOW = new Date("2027-06-21T00:00:00Z");
 
 export const mission = {
   code: "HELLAS-1",
@@ -24,8 +24,8 @@ export const mission = {
     en: "No earlier than summer 2027",
   } satisfies Localized,
   duration: {
-    el: "Έως ~14 ημέρες στον ISS (NASA / Vast).",
-    en: "Up to ~14 days aboard ISS (NASA / Vast).",
+    el: "Περίπου 2 εβδομάδες στον ISS (η ελληνική ανακοίνωση του Ιουνίου ανέφερε έως ~3 εβδομάδες)",
+    en: "About two weeks on the ISS (Greece’s June briefing described a stay of up to about three weeks)",
   } satisfies Localized,
   status: {
     el: "Αναμονή έγκρισης MCOP · εκπαίδευση σε εξέλιξη",
@@ -72,8 +72,8 @@ export const golemis = {
     en: "It is an honour and a joy to represent Greece in space.",
   } satisfies Localized,
   story: {
-    el: "Γιατρός πτήσεων της ESA από τη Λάρισα. Ονομασμένος ειδικός αποστολής στο PAM-6 / Vast-PAM-1, εφόσον εγκρίνει το MCOP.",
-    en: "ESA flight surgeon from Larissa. Named mission specialist on PAM-6 / Vast-PAM-1, pending MCOP.",
+    el: "Ο Αδριανός Γολέμης είναι γιατρός πτήσεων και ο πρώτος Έλληνας που ολοκλήρωσε και τα έξι στάδια επιλογής αστροναυτών της ESA. Από τον καθαρό ουρανό του Πλαταμώνα μέχρι τον ISS, η διαδρομή του δείχνει ότι ένας μαθητής από τη Θεσσαλία μπορεί να φτάσει σε τροχιά.",
+    en: "Adrianos Golemis is a flight surgeon and the first Greek to complete all six stages of ESA astronaut selection. From meteor showers over Platamonas to the ISS, his path shows a child from Thessaly can reach orbit.",
   } satisfies Localized,
   kidsStory: {
     el: "Κάποτε ένα παιδί στη Λάρισα κοίταζε τα πεφταστέρια με τους γονείς του. Σπούδασε γιατρός, έζησε 14 μήνες στην Ανταρκτική και έγινε ο γιατρός των Ευρωπαίων αστροναυτών. Το 2027 θέλει να γίνει ο πρώτος Έλληνας σε τροχιά — και να φέρει την έρευνα πίσω στην Ελλάδα.",
@@ -149,10 +149,9 @@ export const crew = [
     nation: { el: "Γαλλία", en: "France" } satisfies Localized,
     flag: "🇫🇷",
     role: { el: "Διοικητής", en: "Commander" } satisfies Localized,
-    agency: "ESA",
     bio: {
-      el: "Αστροναύτης ESA, διοικητής της πτήσης. Εκπαίδευση με Vast, SpaceX και NASA.",
-      en: "ESA astronaut, flight commander. Training with Vast, SpaceX and NASA.",
+      el: "Βετεράνος της ESA με 396 ημέρες σε τροχιά σε δύο αποστολές (Proxima 2016, Alpha 2021). Πρώτος Γάλλος διοικητής του ISS. Έξι διαστημικούς περιπάτους. Τρίτη του πτήση.",
+      en: "ESA veteran with 396 days in orbit across two missions (Proxima 2016, Alpha 2021). First French ISS commander. Six spacewalks. This will be his third flight.",
     } satisfies Localized,
     kids: {
       el: "Ο Τόμας είναι ο έμπειρος καπετάνιος. Έχει ζήσει σχεδόν έναν χρόνο στο Διάστημα.",
@@ -166,10 +165,9 @@ export const crew = [
     nation: { el: "Τσεχία", en: "Czechia" } satisfies Localized,
     flag: "🇨🇿",
     role: { el: "Πιλότος", en: "Pilot" } satisfies Localized,
-    agency: "ESA",
     bio: {
-      el: "Project astronaut της ESA από την Τσεχία. Πιλότος της πτήσης, υπό MCOP.",
-      en: "ESA project astronaut from Czechia. Flight pilot, pending MCOP.",
+      el: "Πιλότος μαχητικών της τσεχικής αεροπορίας και Project Astronaut της ESA (επιλογή 2022). Θα γίνει ο πρώτος Τσέχος στον ISS (δεύτερος Τσέχος σε τροχιά μετά τον Βλαντιμίρ Ρέμεκ το 1978). Λίγοι Ευρωπαίοι είναι πιστοποιημένοι πιλότοι Dragon.",
+      en: "Czech Air Force fighter pilot and ESA Project Astronaut (class of 2022). Set to be the first Czech on the ISS (second Czech in orbit after Vladimír Remek in 1978). Few Europeans are certified Dragon pilots.",
     } satisfies Localized,
     kids: {
       el: "Ο Άλες πετά μαχητικά αεροπλάνα και θα πιλοτάρει το Dragon — σαν οδηγός του διαστημοπλοίου.",
@@ -183,10 +181,9 @@ export const crew = [
     nation: { el: "Ελλάδα", en: "Greece" } satisfies Localized,
     flag: "🇬🇷",
     role: { el: "Ειδικός αποστολής", en: "Mission specialist" } satisfies Localized,
-    agency: "ESA",
     bio: {
-      el: "Γιατρός πτήσεων ESA. Ειδικός αποστολής, υπό έγκριση MCOP.",
-      en: "ESA flight surgeon. Mission specialist, pending MCOP.",
+      el: "Πρώτος Έλληνας αστροναύτης. Γιατρός που φρόντιζε Ευρωπαίους αστροναύτες — τώρα πετά ο ίδιος. Θα τρέξει ελληνικά πειράματα σε ιατρική, φυσιολογία, αγροδιατροφή, υλικά και αισθητήρες.",
+      en: "First Greek astronaut. The doctor who cared for European astronauts now flies himself. He will run Greek experiments in medicine, physiology, agri-food, materials and sensors.",
     } satisfies Localized,
     kids: {
       el: "Ο Αδριανός είναι ο δικός μας ήρωας. Θα κάνει επιστημονικά πειράματα για την Ελλάδα.",
@@ -199,10 +196,9 @@ export const crew = [
     nation: { el: "Θα ανακοινωθεί", en: "To be announced" } satisfies Localized,
     flag: "✦",
     role: { el: "Θέση ανοιχτή", en: "Seat open" } satisfies Localized,
-    agency: "—",
     bio: {
-      el: "Τέταρτη θέση ανοιχτή. Δεν έχει ανακοινωθεί όνομα.",
-      en: "Fourth seat open. No name announced.",
+      el: "Το Dragon πετά με πλήρωμα έως τεσσάρων. Το τέταρτο όνομα δεν έχει ανακοινωθεί ακόμη.",
+      en: "Dragon flies a crew of up to four. The fourth name has not been announced yet.",
     } satisfies Localized,
     kids: {
       el: "Λείπει ακόμα ένα όνομα στην ομάδα. Θα το μάθουμε σύντομα!",
